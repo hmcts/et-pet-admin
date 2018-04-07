@@ -11,11 +11,11 @@ module Admin
     end
 
     def update?
-      true
+      false
     end
 
     def destroy
-      true
+      false
     end
   end
 

@@ -32,7 +32,7 @@ ActiveAdmin.register Admin::Claim, as: 'Claims' do
     attributes_table(*default_attribute_table_rows)
     panel('Claimants') do
       table_for claim.claimants do
-        column(:id) { |r| link_to r.id, r}
+        column(:id) { |r| auto_link r, r.id }
         column :title
         column :first_name
         column :last_name
@@ -41,21 +41,21 @@ ActiveAdmin.register Admin::Claim, as: 'Claims' do
 
     panel('Respondents') do
       table_for claim.respondents do
-        column(:id) { |r| link_to r.id, r}
+        column(:id) { |r| auto_link r, r.id }
         column :name
       end
     end
 
     panel('Representatives') do
       table_for claim.representatives do
-        column(:id) { |r| link_to r.id, r}
+        column(:id) { |r| auto_link r, r.id }
         column(:name)
       end
     end
 
     panel('Files') do
       table_for claim.uploaded_files do
-        column(:id) { |r| link_to r.id, r}
+        column(:id) { |r| auto_link r, r.id }
         column(:filename)
       end
     end

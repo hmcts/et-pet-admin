@@ -11,5 +11,28 @@ ActiveAdmin.register Admin::Claimant, as: 'Claimants' do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+  show do |claimant|
+    default_attribute_table_rows = active_admin_config.resource_columns
+    attributes_table do
+      row :title
+      row :first_name
+      row :last_name
+      row(:address) do |r|
+        div r.address.building
+        div r.address.street
+        div r.address.locality
+        div r.address.county
+        div r.address.post_code
+      end
+      row :address_telephone_number
+      row :mobile_number
+      row :email_address
+      row :contact_preference
+      row :gender
+      row :date_of_birth
+      row :created_at
+      row :updated_at
+    end
 
+  end
 end
