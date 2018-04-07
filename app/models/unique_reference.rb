@@ -1,2 +1,0 @@
-class UniqueReference < ApplicationRecord
-end
