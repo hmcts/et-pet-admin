@@ -12,7 +12,6 @@ ActiveAdmin.register Admin::Claimant, as: 'Claimants' do
 #   permitted
 # end
   show do |claimant|
-    default_attribute_table_rows = active_admin_config.resource_columns
     attributes_table do
       row :title
       row :first_name
