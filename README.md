@@ -1,4 +1,4 @@
-# ET API
+# ET Admin
 
 Experiment - DO NOT USE
 
@@ -130,5 +130,22 @@ setup your own database etc.. Just go about things in the normal way, but rememb
    DB_PASSWORD
    DB_PORT
    DB_NAME
-   
+
+
+# Other Environment Variables
+
+## ATOS_API_URL
+
+The admin provides a basic ATOS API client to read the zip files that have been
+exported and be able to download them without requiring active_storage.
+If this app moves to Rails 5.2 then this may well move to using the active_storage stuff
+
+This environment variable points to the base URL for the API
+
+e.g.
+```
+
+ATOS_API_URL=http://localhost:3101/atos_api
+
+```
    
