@@ -10,5 +10,13 @@ module Admin
     has_many :representatives, through: :claim_representatives
     has_many :uploaded_files, through: :claim_uploaded_files
 
+    def primary_claimant
+      claimants.first
+    end
+
+    def name
+      claimant = primary_claimant
+      "#{claimant.title} #{claimant.first_name} #{claimant.last_name}"
+    end
   end
 end
