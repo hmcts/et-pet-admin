@@ -37,3 +37,17 @@ en:
           admin/office:
             is_default:
               false_value: ' '
+  activemodel:
+    attributes:
+      admin/acas_certificate:
+        date_of_receipt: 'ACAS first contact'
+        date_of_issue: 'ACAS conciliation closed'
+        method_of_issue: 'Certificate sent'
+        respondent_name: 'Full name'
+        claimant_name: 'Full name'
+  date:
+    formats:
+      long: "%d/%m%Y"
+  time:
+    formats:
+      long: "%d/%m/%Y %H:%M:%S"

@@ -22,10 +22,12 @@ senior_role = Admin::Role.find_or_create_by!(name: 'senior') do |role|
   role.permissions << Admin::Permission.find_by(name: 'update_offices')
   role.permissions << Admin::Permission.find_by(name: 'delete_offices')
   role.permissions << Admin::Permission.find_by(name: 'create_offices')
+  role.permissions << Admin::Permission.find_by(name: 'read_acas')
 end
 
 junior_role = Admin::Role.find_or_create_by!(name: 'junior') do |role|
   role.permissions << Admin::Permission.find_by(name: 'read_offices')
+  role.permissions << Admin::Permission.find_by(name: 'read_acas')
 end
 
 
