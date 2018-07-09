@@ -45,7 +45,6 @@ module Admin
         ENV.fetch('ACAS_API_URL')
       end
 
-
       attr_accessor :_page_size, :_current_page
     end
     include ActiveModel::Model
@@ -68,6 +67,8 @@ module Admin
       return nil_instance if id.nil?
       base_url = ENV.fetch('ACAS_API_URL')
       response = HTTParty.get("#{base_url}/certificates/#{id}", format: :json, headers: { 'EtUserId': current_admin_user.email, 'Accept' => 'application/json', 'Content-Type' => 'application/json' })
+      return nil_instance if response.code == 404
+      return nil_instance if response.code == 422
       raise 'An error occured communicating with acas' unless (200..299).include?(response.code)
       raise 'Not found' unless response.parsed_response['status'] == 'found'
       AcasCertificate.new(response.parsed_response['data'])

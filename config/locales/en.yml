@@ -39,12 +39,18 @@ en:
               false_value: ' '
   activemodel:
     attributes:
-      admin/acas_certificate:
+      admin/acas_certificate_form:
         date_of_receipt: 'ACAS first contact'
         date_of_issue: 'ACAS conciliation closed'
         method_of_issue: 'Certificate sent'
         respondent_name: 'Full name'
         claimant_name: 'Full name'
+    errors:
+      models:
+        admin/acas_certificate_form:
+          attributes:
+            number:
+              invalid_certificate: 'No certificate returned from ACAS for %{number}'
   date:
     formats:
       long: "%d/%m%Y"
