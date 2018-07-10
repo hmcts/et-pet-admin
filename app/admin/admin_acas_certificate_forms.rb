@@ -35,10 +35,12 @@ ActiveAdmin.register Admin::AcasCertificateForm, as: 'Acas Certificates' do
     end
 
     if acas_certificates.errors.present?
-      div class: 'search-errors' do
-        acas_certificates.errors.full_messages.each do |message|
-          span class: 'error' do
-            message
+      div class: 'flash' do
+        div class: 'search-errors flash_error' do
+          acas_certificates.errors.full_messages.each do |message|
+            span class: 'error' do
+              message
+            end
           end
         end
       end

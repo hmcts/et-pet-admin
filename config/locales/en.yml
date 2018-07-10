@@ -50,7 +50,9 @@ en:
         admin/acas_certificate_form:
           attributes:
             number:
-              invalid_certificate: 'No certificate returned from ACAS for %{number}'
+              not_found: 'No certificate returned from ACAS for %{number}'
+              invalid_certificate: 'Please enter a valid certificate number'
+              unknown_exception: 'There was a problem with the ACAS service - please try again later'
   date:
     formats:
       long: "%d/%m%Y"
