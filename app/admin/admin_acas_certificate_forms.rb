@@ -1,5 +1,5 @@
 ActiveAdmin.register Admin::AcasCertificateForm, as: 'Acas Certificates' do
-  menu parent: 'Acas'
+  menu false
 
   show do
     div class: 'active-admin-acas search-results-search' do
