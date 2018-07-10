@@ -2,66 +2,9 @@ require 'httparty'
 module Admin
   class AcasCertificate
     NIL_INSTANCE = new
-    class AcasCertificateProxy
-      include Enumerable
-      attr_accessor :query
-
-      def initialize
-        self._page_size = 25
-        self._current_page = 1
-      end
-
-      def each(&block)
-        certificates.each(&block)
-      end
-
-      def except(*args)
-        self
-      end
-
-      def group_values
-        []
-      end
-
-      def total_pages
-        1
-      end
-
-      def current_page
-        1
-      end
-
-      def limit_value
-        _page_size
-      end
-
-      def total_count
-        count
-      end
-
-      private
-
-      def base_url
-        ENV.fetch('ACAS_API_URL')
-      end
-
-      attr_accessor :_page_size, :_current_page
-    end
     include ActiveModel::Model
 
-    attr_accessor :id, :claimant_name, :respondent_name, :certificate_number, :date_of_issue, :date_of_receipt, :message, :method_of_issue
-
-    def self.columns
-      []
-    end
-
-    def self.primary_key
-      :id
-    end
-
-    def self.all
-      AcasCertificateProxy.new
-    end
+    attr_accessor :id, :claimant_name, :respondent_name, :certificate_number, :date_of_issue, :date_of_receipt, :message, :method_of_issue, :certificate_base64
 
     def self.find(id, current_admin_user:)
       return nil_instance if id.nil?
@@ -70,16 +13,11 @@ module Admin
       return nil_instance if response.code == 404
       return nil_instance if response.code == 422
       raise 'An error occured communicating with acas' unless (200..299).include?(response.code)
-      raise 'Not found' unless response.parsed_response['status'] == 'found'
       AcasCertificate.new(response.parsed_response['data'])
     end
 
     def self.nil_instance
       NIL_INSTANCE
-    end
-
-    def self.base_class
-      self
     end
 
     def base_url

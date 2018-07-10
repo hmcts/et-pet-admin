@@ -45,6 +45,7 @@ en:
         method_of_issue: 'Certificate sent'
         respondent_name: 'Full name'
         claimant_name: 'Full name'
+        certificate_download: 'Certificate download'
     errors:
       models:
         admin/acas_certificate_form:

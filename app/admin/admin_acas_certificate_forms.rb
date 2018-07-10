@@ -31,6 +31,12 @@ ActiveAdmin.register Admin::AcasCertificateForm, as: 'Acas Certificates' do
         attributes_table title: 'Lead Claimant' do
           row :claimant_name
         end
+        div class: 'acas-certificate' do
+          attributes_table title: 'Certificate' do
+            row(:certificate_download) { |r| a(download: "#{r.respondent_name} - #{r.claimant_name}.pdf", type: 'application/pdf', href: "data:application/pdf;base64,#{r.certificate.certificate_base64}") { 'Download' } }
+            row(:certificate_preview) { |r| iframe src: "data:application/pdf;base64,#{r.certificate.certificate_base64}" }
+          end
+        end
       end
     end
 
@@ -53,32 +59,6 @@ ActiveAdmin.register Admin::AcasCertificateForm, as: 'Acas Certificates' do
       form = ::Admin::AcasCertificateForm.new(number: params[:number], current_admin_user: current_admin_user)
       ::Admin::AcasCertificateSearchService.call(form)
       form
-    end
-
-    def apply_decorations(resource)
-      resource
-    end
-
-    def apply_sorting(collection)
-      collection
-    end
-
-    def apply_filtering(collection)
-      collection.query = params[:id]
-      collection
-    end
-
-    def apply_scoping(collection)
-      collection
-    end
-
-    def apply_includes(collection)
-      collection
-    end
-
-    def apply_pagination(collection)
-      collection
-      collection.all
     end
   end
 end
