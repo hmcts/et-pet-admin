@@ -4,7 +4,7 @@ module Admin
 
     belongs_to :office
 
-    validates :postcode, presence: true
+    validates :postcode, presence: true, uniqueness: true
 
     def to_s
       postcode
