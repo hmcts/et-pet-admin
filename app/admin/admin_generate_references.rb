@@ -1,4 +1,4 @@
-ActiveAdmin.register GenerateReference, as: 'Generate Reference' do
+ActiveAdmin.register Admin::GenerateReference, as: 'Generate Reference' do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -31,8 +31,8 @@ ActiveAdmin.register GenerateReference, as: 'Generate Reference' do
     end
 
     def create
-      postcode = params[:generate_reference][:postcode]
-      @admin_generate_reference = GenerateReference.new(postcode: postcode)
+      postcode = params[:admin_generate_reference][:postcode]
+      @admin_generate_reference = Admin::GenerateReference.new(postcode: postcode)
       if @admin_generate_reference.valid?
         generate_reference_model = Admin::GenerateReferenceService.call(postcode)
         redirect_to admin_generate_reference_path(id: generate_reference_model.reference)
@@ -43,7 +43,7 @@ ActiveAdmin.register GenerateReference, as: 'Generate Reference' do
     end
 
     def find_resource
-      ::GenerateReference.new(reference: params[:id])
+      Admin::GenerateReference.new(reference: params[:id])
     end
   end
 end
