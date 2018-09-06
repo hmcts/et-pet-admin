@@ -31,8 +31,8 @@ ActiveAdmin.register GenerateReference, as: 'Generate Reference' do
     end
 
     def create
-      postcode = params[:admin_generate_reference][:postcode]
-      @admin_generate_reference = Admin::GenerateReference.new(postcode: postcode)
+      postcode = params[:generate_reference][:postcode]
+      @admin_generate_reference = GenerateReference.new(postcode: postcode)
       if @admin_generate_reference.valid?
         generate_reference_model = Admin::GenerateReferenceService.call(postcode)
         redirect_to admin_generate_reference_path(id: generate_reference_model.reference)
