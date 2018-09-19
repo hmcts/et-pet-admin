@@ -1,5 +1,6 @@
 ActiveAdmin.register Admin::User, as: 'User' do
-  permit_params :email, :password, :password_confirmation
+  permit_params :email, :username, :department, :password,
+                :password_confirmation, role_ids: []
 
   collection_action :import, method: :get do
     authorize!(:import, active_admin_config.resource_class)
