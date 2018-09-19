@@ -1,4 +1,5 @@
 ActiveAdmin.register Admin::User, as: 'User' do
+  before_action :remove_unused_pw_params, only: :update
   permit_params :email, :username, :department, :password,
                 :password_confirmation, role_ids: []
 
@@ -27,6 +28,17 @@ ActiveAdmin.register Admin::User, as: 'User' do
       redirect_to admin_users_path
     else
       render :import
+    end
+  end
+
+  controller do
+    def remove_unused_pw_params
+      return unless params[:admin_user][:password].blank? &&
+                    params[:admin_user][:password_confirmation].blank? do
+                      params[:admin_user].delete(:password)
+                      params[:admin_user].delete(:password_confirmation)
+                    end
+      params
     end
   end
 
