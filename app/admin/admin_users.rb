@@ -88,7 +88,9 @@ ActiveAdmin.register Admin::User, as: 'User' do
       f.input :department
       f.input :password
       f.input :password_confirmation
-      f.input :role_ids, as: :selected_list, label: 'Roles'
+      if authorized?(:index, Admin::Role)
+        f.input :role_ids, as: :selected_list, label: 'Roles'
+      end
     end
     f.actions
   end
