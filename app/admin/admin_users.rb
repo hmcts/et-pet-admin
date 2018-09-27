@@ -43,6 +43,7 @@ ActiveAdmin.register Admin::User, as: 'User' do
   index do
     selectable_column
     id_column
+    column :name
     column :username
     column :email
     column :department
