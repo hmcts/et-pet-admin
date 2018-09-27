@@ -33,12 +33,10 @@ ActiveAdmin.register Admin::User, as: 'User' do
 
   controller do
     def remove_unused_pw_params
-      return unless params[:admin_user][:password].blank? &&
-                    params[:admin_user][:password_confirmation].blank? do
-                      params[:admin_user].delete(:password)
-                      params[:admin_user].delete(:password_confirmation)
-                    end
-      params
+      if params[:admin_user][:password].blank? && params[:admin_user][:password_confirmation].blank?
+        params[:admin_user].delete(:password)
+        params[:admin_user].delete(:password_confirmation)
+      end
     end
   end
 
