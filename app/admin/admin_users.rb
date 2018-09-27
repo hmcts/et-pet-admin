@@ -1,7 +1,7 @@
 ActiveAdmin.register Admin::User, as: 'User' do
   before_action :remove_unused_pw_params, only: :update
   permit_params :email, :username, :department, :password,
-                :password_confirmation, role_ids: []
+                :password_confirmation, :name, role_ids: []
 
   collection_action :import, method: :get do
     authorize!(:import, active_admin_config.resource_class)
@@ -59,6 +59,7 @@ ActiveAdmin.register Admin::User, as: 'User' do
 
   show do |user|
     attributes_table do
+      row :name
       row :email
       row :reset_password_sent_at
       row :remember_created_at
@@ -71,7 +72,6 @@ ActiveAdmin.register Admin::User, as: 'User' do
       row :created_at
       row :updated_at
       row :username
-      row :name
       row :department
       row :failed_attempts
       row :locked_at
@@ -81,6 +81,7 @@ ActiveAdmin.register Admin::User, as: 'User' do
 
   form do |f|
     f.inputs do
+      f.input :name
       f.input :email
       f.input :username
       f.input :department
