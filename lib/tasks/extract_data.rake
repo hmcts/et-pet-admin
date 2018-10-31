@@ -20,7 +20,16 @@ namespace :extract_data do
         csv << hash.values
       end
     end
+  end
 
+  desc 'Prints the percentage of employment_details completed from all claims complete'
+  task employment_details_completion_rate: :environment do
+    include ActiveSupport::NumberHelper
+    number_completed = Claim.where(updated_at: 1.year.ago..Time.now)
+                            .where.not(employment_details: {}).count
+    total_completed = Claim.where(updated_at: 1.year.ago..Time.now).count
+
+    puts number_to_percentage(number_completed / total_completed, precision: 2)
   end
 
 end
