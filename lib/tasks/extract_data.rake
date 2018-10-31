@@ -26,8 +26,8 @@ namespace :extract_data do
   task employment_details_completion_rate: :environment do
     include ActiveSupport::NumberHelper
     number_completed = Claim.where(updated_at: 1.year.ago..Time.now)
-                            .where.not(employment_details: {}).count
-    total_completed = Claim.where(updated_at: 1.year.ago..Time.now).count
+                            .where.not(employment_details: {}).count.to_f
+    total_completed = Claim.where(updated_at: 1.year.ago..Time.now).count.to_f
 
     puts number_to_percentage(number_completed / total_completed, precision: 2)
   end
