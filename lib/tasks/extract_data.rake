@@ -1,22 +1,29 @@
 namespace :extract_data do
-  desc 'Creates a CSV file with answers from pay, pension and benefits sections of the Employment Details section'
-  task employment_details: :environment do
-    employment_details = []
-    Claim.where(updated_at: 1.year.ago..Time.now).each do |record|
+  desc 'Creates a CSV file with answers from sections 5, 6 and 9 of the paper form'
+  task policy_csv: :environment do
+    policy_data = []
+    Claim.where(updated_at: Date.parse('2018-10-08')..Time.now).each do |record|
       next if record.employment_details.empty?
-      employment_details << record.employment_details.symbolize_keys
-                                  .slice(:net_pay,
-                                         :net_pay_period_type,
-                                         :gross_pay,
-                                         :gross_pay_period_type,
-                                         :enrolled_in_pension_scheme,
-                                         :benefit_details)
+      record_hash = record.employment_details.symbolize_keys
+                                 .slice(:net_pay,
+                                        :net_pay_period_type,
+                                        :gross_pay,
+                                        :gross_pay_period_type,
+                                        :enrolled_in_pension_scheme,
+                                        :benefit_details,
+                                        :start_date,
+                                        :end_date,
+                                        :notice_period_end_date,
+                                        :job_title)
+      record_hash[:desired_outcomes] = record.desired_outcomes
+      record_hash[:other_outcome] = record.other_outcome
+      policy_data << record_hash
     end
 
-    CSV.open('tmp/employment_details.csv', 'wb') do |csv|
-      keys = employment_details.first.keys
+    CSV.open('tmp/policy_data.csv', 'wb') do |csv|
+      keys = policy_data.first.keys
       csv << keys
-      employment_details.each do |hash|
+      policy_data.each do |hash|
         csv << hash.values
       end
     end
