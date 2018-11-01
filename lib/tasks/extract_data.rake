@@ -22,12 +22,12 @@ namespace :extract_data do
     end
   end
 
-  desc 'Prints the percentage of employment_details completed from all claims complete'
+  desc 'Prints the percentage of employment_details completed from all claims complete since 8th October 2018'
   task employment_details_completion_rate: :environment do
     include ActiveSupport::NumberHelper
-    number_completed = Claim.where(updated_at: 1.year.ago..Time.now)
+    number_completed = Claim.where(updated_at: Date.parse('2018-10-08')..Time.now)
                             .where.not(employment_details: {}).count.to_f
-    total_completed = Claim.where(updated_at: 1.year.ago..Time.now).count.to_f
+    total_completed = Claim.where(updated_at: Date.parse('2018-10-08')..Time.now).count.to_f
 
     puts number_to_percentage(number_completed / total_completed, precision: 2)
   end
