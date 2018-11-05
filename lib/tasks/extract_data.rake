@@ -36,7 +36,7 @@ namespace :extract_data do
                             .where.not(employment_details: {}).count.to_f
     total_completed = Claim.where(updated_at: Date.parse('2018-10-08')..Time.now).count.to_f
 
-    puts number_to_percentage(number_completed / total_completed, precision: 2)
+    puts number_to_percentage((number_completed / total_completed) * 100,
+                              precision: 2)
   end
-
 end
