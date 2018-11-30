@@ -3,7 +3,7 @@ ActiveAdmin.register ExternalSystem, as: 'External Systems' do
   filter :name
   filter :reference
 
-  permit_params :name, :reference, :enabled, office_codes: []
+  permit_params :name, :reference, :enabled, office_codes: [], configurations_attributes: [:id, :key, :value, :_destroy]
 
   show do |system|
     default_attribute_table_rows = active_admin_config.resource_columns
@@ -35,6 +35,13 @@ ActiveAdmin.register ExternalSystem, as: 'External Systems' do
       input :reference
       input :enabled
       input :office_codes, as: :check_boxes, collection: Office.all.map {|o| [o.name, o.code]}
+    end
+
+    f.inputs do
+      f.has_many :configurations, allow_destroy: true do |a|
+        a.input :key
+        a.input :value
+      end
     end
     f.actions
   end
