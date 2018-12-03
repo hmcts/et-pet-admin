@@ -2,11 +2,11 @@ require 'httparty'
 class AtosFile
   class AtosFileProxy
     include Enumerable
-    def initialize
+    def initialize(external_system:)
       self._page_size = 25
       self._current_page = 1
-      self.username = Rails.configuration.et_atos_api.username
-      self.password = Rails.configuration.et_atos_api.password
+      self.username = external_system.config[:username]
+      self.password = external_system.config[:password]
     end
 
     def each(&block)
@@ -67,12 +67,12 @@ class AtosFile
     :id
   end
 
-  def self.all
-    AtosFileProxy.new
+  def self.all(external_system:)
+    AtosFileProxy.new(external_system: external_system)
   end
 
-  def self.find(id)
-    all.find {|r| r.id == id}
+  def self.find(id, external_system: 'atos')
+    all(external_system: external_system).find {|r| r.id == id}
   end
 
   def self.base_class

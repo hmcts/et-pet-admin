@@ -8,4 +8,11 @@ class ExternalSystem < ApplicationRecord
   def office_codes=(arr)
     super arr.reject(&:blank?)
   end
+
+  def config
+    @config ||= configurations.inject({}) do |acc, configuration|
+      acc[configuration.key.to_sym] = configuration.value
+      acc
+    end
+  end
 end
