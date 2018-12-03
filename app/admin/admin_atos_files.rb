@@ -22,7 +22,7 @@ ActiveAdmin.register AtosFile, as: 'AtosFiles' do
 
   index do
     column(:id, sortable: false) do |r|
-      link_to "Download #{r.id}", download_admin_atos_file_path(id: URI.encode(r.id).gsub(/\./, '%2E'))
+      link_to "Download #{r.id}", download_admin_atos_file_path(id: URI.encode(r.id).gsub(/\./, '%2E'), external_system_reference: r.external_system.reference)
     end
   end
 
