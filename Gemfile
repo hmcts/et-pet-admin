@@ -59,7 +59,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-gem 'devise', '~> 4.4'
+gem 'devise', '~> 4.5'
 gem 'activeadmin', '~> 1.3'
 gem 'activeadmin_addons', '~> 1.4'
 gem 'activerecord-import', '~> 0.17'
