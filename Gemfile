@@ -62,7 +62,7 @@ group :development do
 end
 
 gem 'devise', '~> 4.6'
-gem 'activeadmin', '~> 1.3'
+gem 'activeadmin', '~> 1.4'
 gem 'activeadmin_addons', '~> 1.4'
 gem 'activerecord-import', '~> 0.17'
 gem 'active_admin_import', '~> 3.1'
