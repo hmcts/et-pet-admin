@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/ministryofjustice/azure_env_secrets.git
+  revision: 73d252c53b9b8d3db448d7515896ab7d7c20354e
+  tag: v0.1.2
+  specs:
+    azure_env_secrets (0.1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -321,6 +328,7 @@ DEPENDENCIES
   activerecord-import (~> 0.17)
   aws-sdk-s3 (~> 1.17)
   azure-storage (~> 0.15.0.preview)
+  azure_env_secrets!
   byebug
   coffee-rails (~> 4.2)
   devise (~> 4.6)
