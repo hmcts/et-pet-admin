@@ -69,7 +69,7 @@ gem 'activeadmin_addons', '~> 1.4'
 gem 'activerecord-import', '~> 0.17'
 gem 'active_admin_import', '~> 4.1'
 gem 'pundit', '~> 2.0'
-gem 'httparty', '~> 0.16.2'
+gem 'httparty', '~> 0.17.0'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
