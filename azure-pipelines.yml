@@ -60,7 +60,7 @@ jobs:
       displayName: 'Get Assets'
       name: 'getAssets'
 
-    - task: AzureFileCopy@3
+    - task: AzureFileCopy@1
       inputs:
         SourcePath: './temp_assets/assets'
         azureSubscription: 'hmcts-pet'
