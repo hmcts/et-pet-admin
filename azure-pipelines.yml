@@ -60,14 +60,13 @@ jobs:
       displayName: 'Get Assets'
       name: 'getAssets'
 
-    - task: AzureFileCopy@1
-      displayName: 'AzureBlob File Copy'
+    - task: AzureFileCopy@3
       inputs:
-        SourcePath: ./temp_assets/assets
+        SourcePath: './temp_assets/assets'
         azureSubscription: 'hmcts-pet'
-        Destination: AzureBlob
-        storage: bbea327e42bedevet3
-        ContainerName: assets1
+        Destination: 'AzureBlob'
+        storage: 'bbea327e42bedevet'
+        ContainerName: 'assets'
 
 - job: BuildAndPushImage
   pool:
