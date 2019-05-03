@@ -28,7 +28,7 @@ jobs:
 
 - job: ExtractAssets
   pool:
-    name: hmcts-pet  # name of the pool to run this job in
+    vmImage: 'Ubuntu-16.04'
   steps:
 
     - bash: |
@@ -60,7 +60,7 @@ jobs:
       displayName: 'Get Assets'
       name: 'getAssets'
 
-    - task: AzureFileCopy@1
+    - task: AzureFileCopy@3
       displayName: 'AzureBlob File Copy'
       inputs:
         SourcePath: ./temp_assets/assets
