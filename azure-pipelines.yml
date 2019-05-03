@@ -60,12 +60,8 @@ jobs:
       displayName: 'Get Assets'
       name: 'getAssets'
 
-<<<<<<< HEAD
     - task: AzureFileCopy@3
       displayName: 'AzureBlob File Copy'
-=======
-    - task: AzureFileCopy@1
->>>>>>> 1158fdd61952afc3481b44dfdab86e7c068186c5
       inputs:
         SourcePath: './temp_assets/assets'
         azureSubscription: 'hmcts-pet'
@@ -74,6 +70,7 @@ jobs:
         ContainerName: 'assets'
 
 - job: BuildAndPushImage
+  dependsOn: ExtractAssets
   pool:
     name: hmcts-pet  # name of the pool to run this job in
   steps:
