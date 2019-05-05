@@ -62,13 +62,13 @@ jobs:
 
     - bash: |
         az login --service-principal -u $(ARM_CLIENT_ID) -p $(ARM_CLIENT_SECRET) --tenant $(ARM_TENANT_ID)
-        az storage blob upload-batch -d assets --account-name $(AZURE_STORAGE_ACCOUNT) -s .
-      displayName: 'Backup Blob'
-      name: 'backupBlob'
+        az storage blob delete-batch -s assets --account-name $(azure.storage.account)
+      displayName: 'Clean Up Blob'
+      name: 'cleanUpBlob'
 
     - bash: |
         az login --service-principal -u $(ARM_CLIENT_ID) -p $(ARM_CLIENT_SECRET) --tenant $(ARM_TENANT_ID)
-        az storage blob upload-batch -d assets --account-name $(AZURE_STORAGE_ACCOUNT) -s .
+        az storage blob upload-batch -d assets --account-name $(azure.storage.account) -s .
       displayName: 'Copy Assets To Blob'
       name: 'copyToBlob'
 
