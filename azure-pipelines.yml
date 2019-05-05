@@ -59,31 +59,33 @@ jobs:
       command: 'Tag image'
       imageName: '$(application.name):$(getDockerTag.DOCKER_TAG)'
     
-  - task: Docker@1
-    displayName: 'Push an image'
-    inputs:
-      azureSubscriptionEndpoint: '$(azure.subscription.endpoint)'
-      azureContainerRegistry: $(azure.container.registry)
-      command: 'Push an image'
-      imageName: '$(application.name):$(getDockerTag.DOCKER_TAG)'
+  # - task: Docker@1
+  #   displayName: 'Push an image'
+  #   inputs:
+  #     azureSubscriptionEndpoint: '$(azure.subscription.endpoint)'
+  #     azureContainerRegistry: $(azure.container.registry)
+  #     command: 'Push an image'
+  #     imageName: '$(application.name):$(getDockerTag.DOCKER_TAG)'
 
-  - task: Docker@1
-    displayName: logout
-    inputs:
-      command: logout
+  # - task: Docker@1
+  #   displayName: logout
+  #   inputs:
+  #     command: logout
 
 
 - job: ExtractAssets
   dependsOn: BuildAndPushImage
   pool:
     name: hmcts-pet
+  variables:
+    docker.tag: $[ dependencies.BuildAndPushImage.outputs['getDockerTag.DOCKER_TAG'] ]
   steps:
 
     - task: Docker@1
       displayName: 'Run an image'
       inputs:
         command: 'Run an image'
-        imageName: '$(application.name):$(getDockerTagTemp.DOCKER_TAG)'
+        imageName: '$(application.name):$(docker.tag)'
         containerName: 'ASSET_CONTAINER'
 
     - bash: |
