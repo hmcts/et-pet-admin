@@ -112,9 +112,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    dotenv (2.7.2)
-    dotenv-rails (2.7.2)
-      dotenv (= 2.7.2)
+    dotenv (2.7.5)
+    dotenv-rails (2.7.5)
+      dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
     erubi (1.8.0)
     et-orbi (1.2.0)
