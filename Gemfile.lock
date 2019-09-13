@@ -339,7 +339,6 @@ DEPENDENCIES
   active_admin_import (~> 4.1)
   activeadmin (~> 2.0)
   activeadmin_addons (~> 1.4)
-  activerecord-import (~> 0.17)
   azure-storage (~> 0.15.0.preview)
   azure_env_secrets!
   byebug
