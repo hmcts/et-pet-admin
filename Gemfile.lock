@@ -44,7 +44,7 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    active_admin_import (4.1.0)
+    active_admin_import (4.1.1)
       activeadmin (>= 1.0.0.pre2)
       activerecord-import (~> 0.27)
       rchardet (~> 1.6)
