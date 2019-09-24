@@ -35,7 +35,7 @@ ActiveAdmin.register ExternalSystem, as: 'External Systems' do
       input :name
       input :reference
       input :enabled
-      input :export
+      input :export_queue
       input :office_codes, as: :check_boxes, collection: Office.all.map {|o| [o.name, o.code]}
     end
 

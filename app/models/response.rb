@@ -6,5 +6,5 @@ class Response < ApplicationRecord
   belongs_to :representative
   has_many :response_uploaded_files, dependent: :destroy
   has_many :uploaded_files, through: :response_uploaded_files
-
+  has_many :exports, as: :resource
 end
