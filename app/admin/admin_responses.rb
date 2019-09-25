@@ -25,11 +25,7 @@ ActiveAdmin.register Response, as: 'Responses' do
     column :exports do |r|
       r.exports.count
     end
-    actions do
-      dropdown_menu 'Test' do
-        item "Item 1", "sdsfdsfsd"
-      end
-    end
+    actions
   end
 
 
@@ -52,6 +48,10 @@ ActiveAdmin.register Response, as: 'Responses' do
   filter :reference
   filter :case_number
   filter :created_at
+
+  scope :all, default: true
+  scope :not_exported
+  scope :not_exported_to_ccd
 
 
   batch_action :export, form: {
