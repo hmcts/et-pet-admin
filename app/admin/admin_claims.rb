@@ -30,6 +30,13 @@ ActiveAdmin.register Claim, as: 'Claims' do
     id_column
     column :name
     column :reference
+    column :ccd_state do |c|
+      export = c.exports.ccd.last
+      next '' if export.nil?
+      str = export.state
+      next str unless str == 'complete'
+      "#{str} (#{export.external_system.name} - #{export.external_data['case_id']})"
+    end
   end
 
   form do |f|
