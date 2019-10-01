@@ -35,7 +35,7 @@ ActiveAdmin.register Claim, as: 'Claims' do
       next '' if export.nil?
       str = export.state
       next str unless str == 'complete'
-      "#{str} (#{export.external_system.name} - #{export.external_data['case_id']})"
+      "#{str} (<a target='_blank' href='#{ENV.fetch('CCD_UI_BASE_URL', '')}/#{export.external_data['case_type_id']}/#{export.external_data['case_id']}'>#{export.external_system.name} - #{export.external_data['case_reference']}</a>)".html_safe
     end
   end
 
