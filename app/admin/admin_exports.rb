@@ -36,6 +36,8 @@ ActiveAdmin.register Export, as: 'Exports' do
         column :state
         column :uuid
         column :data
+        column :percent_complete
+        column :message
       end
     end
 
