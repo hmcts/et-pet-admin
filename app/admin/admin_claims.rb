@@ -63,6 +63,12 @@ ActiveAdmin.register Claim, as: 'Claims' do
   show do |claim|
     default_attribute_table_rows = active_admin_config.resource_columns
     attributes_table(*default_attribute_table_rows)
+    panel('Files') do
+      table_for claim.uploaded_files do
+        column(:id) { |r| auto_link r, r.id }
+        column(:filename) { |f| link_to(f.filename, rails_blob_path(f.file, disposition: 'attachment')) }
+      end
+    end
     panel('Secondary Claimants') do
       table_for claim.secondary_claimants do
         column(:id) { |r| auto_link r, r.id }
@@ -86,12 +92,6 @@ ActiveAdmin.register Claim, as: 'Claims' do
       end
     end
 
-    panel('Files') do
-      table_for claim.uploaded_files do
-        column(:id) { |r| auto_link r, r.id }
-        column(:filename)
-      end
-    end
     active_admin_comments
   end
 
@@ -108,6 +108,13 @@ ActiveAdmin.register Claim, as: 'Claims' do
     else
       redirect_to admin_claims_path, notice: 'Claims queued for export'
     end
+  end
+
+  action_item :export,
+              form: -> { { external_system_id: ExternalSystem.pluck(:name, :id) } },
+              only: :show,
+              if: ->() { authorized? :create, :export } do
+    link_to 'Export To CCD', "/something"
   end
 
 
