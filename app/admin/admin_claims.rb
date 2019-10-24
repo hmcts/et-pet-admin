@@ -47,6 +47,7 @@ ActiveAdmin.register Claim, as: 'Claims' do
       str = "#{str} (#{count})" if count > 1
       "<a href='#{admin_export_url(export.id)}'>#{str}</a> (<a target='_blank' href='#{ENV.fetch('CCD_UI_BASE_URL', '')}/#{export.external_data['case_type_id']}/#{export.external_data['case_id']}'>#{export.external_system.name} - #{export.external_data['case_reference']}</a>)".html_safe
     end
+    actions
   end
 
   form do |f|
@@ -111,10 +112,28 @@ ActiveAdmin.register Claim, as: 'Claims' do
   end
 
   action_item :export,
-              form: -> { { external_system_id: ExternalSystem.pluck(:name, :id) } },
               only: :show,
               if: ->() { authorized? :create, :export } do
-    link_to 'Export To CCD', "/something"
+    options = {
+      :class         => "active-admin-export-resource",
+      "data-action"  => 'export',
+      "data-confirm" => 'Are you sure ?',
+      "data-inputs"  => { external_system_id: ExternalSystem.pluck(:name, :id) }.to_json,
+      "data-resource-id" => resource.id,
+      "data-resource-type" => resource.class
+    }
+    link_to 'Export To CCD', export_admin_claim_path, options
+  end
+
+  member_action :export, method: :post do
+    if authorized? :create, :export
+      response = Admin::ExportClaimsService.call([resource.id], params['external_system_id'].to_i)
+      if response.errors.present?
+        redirect_to admin_claims_path, alert: "An error occured exporting your claim - #{response.errors.full_messages.join('<br/>')}"
+      else
+        redirect_to admin_claims_path, notice: 'Claim queued for export'
+      end
+    end
   end
 
 
