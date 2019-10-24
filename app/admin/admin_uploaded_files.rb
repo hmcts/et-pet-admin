@@ -11,6 +11,7 @@ ActiveAdmin.register UploadedFile, as: 'UploadedFiles' do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+  permit_params :file, :filename
 
   preserve_default_filters!
   remove_filter :file_attachment, :file_blob, :checksum
@@ -29,6 +30,15 @@ ActiveAdmin.register UploadedFile, as: 'UploadedFiles' do
     column :filename
     column :created_at
     column :content_type
+  end
+
+  form do |f|
+    f.inputs do
+      f.input :filename
+      f.input :file, as: :file
+    end
+    f.actions
+
   end
 
 end

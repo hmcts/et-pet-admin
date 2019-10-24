@@ -20,4 +20,8 @@ class UploadedFilePolicy < ApplicationPolicy
   def destroy?
     user.is_admin? || user.permission_names.include?('delete_uploaded_file')
   end
+
+  def create?
+    user.is_admin? || user.permission_names.include?('create_uploaded_file')
+  end
 end
