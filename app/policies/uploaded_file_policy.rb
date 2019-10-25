@@ -24,4 +24,8 @@ class UploadedFilePolicy < ApplicationPolicy
   def create?
     user.is_admin? || user.permission_names.include?('create_uploaded_file')
   end
+
+  def export_ccd_multiples?
+    user.is_admin?
+  end
 end
