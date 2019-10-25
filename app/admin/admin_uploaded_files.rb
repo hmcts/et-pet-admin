@@ -11,11 +11,7 @@ ActiveAdmin.register UploadedFile, as: 'UploadedFiles' do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-  permit_params :file, :filename
-  permit_params do
-    return [] unless action_name == 'export_ccd_multiples'
-    return [:case_type_id]
-  end
+  permit_params :file, :filename, :case_type_id
 
   preserve_default_filters!
   remove_filter :file_attachment, :file_blob, :checksum
