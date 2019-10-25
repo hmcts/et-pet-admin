@@ -11,7 +11,7 @@ ActiveAdmin.register UploadedFile, as: 'UploadedFiles' do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-  permit_params :file, :filename, :case_type_id
+  permit_params :file, :filename
 
   preserve_default_filters!
   remove_filter :file_attachment, :file_blob, :checksum
