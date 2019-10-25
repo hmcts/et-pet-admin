@@ -13,7 +13,7 @@ ActiveAdmin.register UploadedFile, as: 'UploadedFiles' do
 # end
   permit_params :file, :filename
   permit_params do
-    return [] unless action == :export_ccd_multiples
+    return [] unless action_name == 'export_ccd_multiples'
     return [:case_type_id]
   end
 
