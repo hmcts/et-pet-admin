@@ -54,6 +54,7 @@ ActiveAdmin.register Claim, as: 'Claims' do
       if str == 'in_progress' && count > 1
         so_far = export.events.sub_case_exported.count
         str = "#{str} (#{so_far}/#{count})"
+        next "<a href='#{admin_export_url(export.id)}'>#{str}</a>".html_safe
       end
       if ['failed', 'erroring'].include? str
         next "<a href='#{admin_export_url(export.id)}'>#{str}</a>".html_safe
