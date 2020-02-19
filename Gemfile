@@ -19,7 +19,7 @@ gem 'sass-rails', '~> 6.0'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'sprockets', '~> 3.7', '>= 3.7.2'
+gem 'sprockets', '~> 4.0'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 5.0'
