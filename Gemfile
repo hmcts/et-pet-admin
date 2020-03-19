@@ -11,7 +11,7 @@ gem 'rails', '~> 6.0.2.1'
 # Azure deployment so we need this
 gem 'azure_env_secrets', git: 'https://github.com/ministryofjustice/azure_env_secrets.git', tag: 'v0.1.3'
 # Use postgres as the database for Active Record
-gem 'pg', '~> 1.0'
+gem 'pg', '~> 1.2'
 gem 'iodine', '~> 0.7.34'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 6.0'
