@@ -36,7 +36,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'sidekiq', '~> 6.0'
-gem 'sidekiq-cron', '~> 1.1'
+gem 'sidekiq-cron', '~> 1.2'
 gem 'sidekiq-failures', '~> 1.0'
 gem 'sentry-raven', '~> 2.7', '>= 2.7.4'
 
