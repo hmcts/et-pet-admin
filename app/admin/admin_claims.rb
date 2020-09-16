@@ -25,7 +25,7 @@ ActiveAdmin.register Claim, as: 'Claims' do
   filter :primary_claimant_last_name_cont, label: "Primary claimant last name"
   filter :primary_respondent_name_or_primary_respondent_contact_cont, label: 'Primary Respondent Name'
 
-  includes :secondary_claimants, :primary_claimant, :exports
+  includes :secondary_claimants, :primary_claimant, :secondary_respondents, :primary_respondent, :exports, :office, uploaded_files: [:file_blob], exports: [:external_system, :events]
 
   index do
     selectable_column
@@ -42,7 +42,7 @@ ActiveAdmin.register Claim, as: 'Claims' do
       c.claimant_count == 1 ? 'Single' : 'Multiple'
     end
     column :files do |c|
-      c.uploaded_files.user_only.map do |f|
+      c.uploaded_files.select {|u| u.filename =~ /\.pdf|\.csv|\.rtf/}.map do |f|
         if f.file.attached?
           link_to("<span class='claim-file-icon #{f.filename.split('.').last}'></span>".html_safe, rails_blob_path(f.file, disposition: 'attachment'))
         else
@@ -51,7 +51,7 @@ ActiveAdmin.register Claim, as: 'Claims' do
       end.join('').html_safe
     end
     column :ccd_state do |c|
-      export = c.exports.ccd.last
+      export = c.exports.detect { |e| e.external_system.reference.include?('ccd') }
       next '' if export.nil?
       str = export.state
       count = c.claimant_count
