@@ -26,6 +26,6 @@ class ClaimPolicy < ApplicationPolicy
   end
 
   def repair?
-    true
+    user.is_admin? || user.permission_names.include?('repair_claims')
   end
 end
