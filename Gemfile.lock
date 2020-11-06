@@ -126,7 +126,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.6)
+    concurrent-ruby (1.1.7)
     connection_pool (2.2.3)
     crass (1.0.6)
     devise (4.7.2)
@@ -162,7 +162,7 @@ GEM
     httparty (0.18.1)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
-    i18n (1.8.3)
+    i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     inherited_resources (1.11.0)
       actionpack (>= 5.0, < 6.1)
@@ -191,7 +191,7 @@ GEM
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    loofah (2.6.0)
+    loofah (2.7.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -205,11 +205,11 @@ GEM
     mimemagic (0.3.5)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
-    minitest (5.14.1)
+    minitest (5.14.2)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
     nio4r (2.5.2)
-    nokogiri (1.10.9)
+    nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pg (1.2.3)
@@ -318,7 +318,7 @@ GEM
     uk_postcode (2.1.5)
     warden (1.2.8)
       rack (>= 2.0.6)
-    web-console (4.0.3)
+    web-console (4.1.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
@@ -329,7 +329,7 @@ GEM
     xdan-datetimepicker-rails (2.5.4)
       jquery-rails
       rails (>= 3.2.16)
-    zeitwerk (2.3.0)
+    zeitwerk (2.4.1)
 
 PLATFORMS
   ruby
