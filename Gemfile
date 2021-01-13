@@ -38,10 +38,10 @@ gem 'jbuilder', '~> 2.10'
 gem 'sidekiq', '~> 6.1'
 gem 'sidekiq-cron', '~> 1.1'
 gem 'sidekiq-failures', '~> 1.0'
-gem 'sentry-raven', '~> 2.7', '>= 2.7.4'
+gem 'sentry-raven', '~> 3.1'
 
 # Azure gem for active storage
-gem 'azure-storage', '~> 0.15.0.preview', require: false
+gem 'azure-storage-blob', '~> 2.0', '>= 2.0.1'
 
 # Use uk_postcode to validate postcodes for manual generation
 gem 'uk_postcode', '~> 2.1'
