@@ -187,7 +187,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
-    listen (3.2.1)
+    listen (3.4.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.8.0)
@@ -348,7 +348,7 @@ DEPENDENCIES
   httparty (~> 0.17)
   iodine (~> 0.7.43)
   jbuilder (~> 2.10)
-  listen (~> 3.2)
+  listen (~> 3.4)
   pg (~> 1.0)
   pundit (~> 2.0)
   rails (~> 6.0.3.2)
