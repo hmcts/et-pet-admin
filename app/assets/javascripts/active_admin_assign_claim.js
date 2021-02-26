@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('a[data-action="redirect"]').on('click', function(event){
+    $('a[data-action="assign"]').on('click', function(event){
         var message;
         event.stopPropagation(); // prevent Rails UJS click event
         event.preventDefault();
@@ -12,10 +12,11 @@ $(document).ready(function() {
             $(this).trigger('confirm:complete');
         }
     });
-    $('a[data-action="redirect"]').on('confirm:complete', function(event, inputs){
+    $('a[data-action="assign"]').on('confirm:complete', function(event, inputs){
         var href, form, hiddenInput;
         formData = { office_id: inputs.office };
         formData.claim_id = $(this).attr('data-claim-id');
+        formData.success_path = $(this).attr('data-success-path');
         formData[$('meta[name="csrf-param"]').attr('content')] = $('meta[name="csrf-token"]').attr('content');
         href = $(this).attr('href');
         form = $('<form method="POST">');

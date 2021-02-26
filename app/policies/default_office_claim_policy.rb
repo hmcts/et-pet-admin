@@ -20,4 +20,8 @@ class DefaultOfficeClaimPolicy < ApplicationPolicy
   def destroy?
     false
   end
+
+  def assign?
+    user.is_admin? || user.permission_names.include?('assign_default_office_claims')
+  end
 end

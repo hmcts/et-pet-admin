@@ -72,13 +72,13 @@ ActiveAdmin.register DefaultOfficeClaim, as: 'Default Office Claims' do
         class: "member_link",
         remote: true,
         data: {
-          action: :redirect,
+          action: :assign,
           confirm: 'This action will transfer this claim to the selected office - are you sure?',
           inputs: {office: Office.order(name: :asc).excluding_default.pluck(:name, :id)}.to_json,
           claim_id: claim.id
         }
       }
-      item "Redirect", redirect_admin_default_office_claim_path(claim.id), options if authorized?(:repair, :claim)
+      item "Assign", assign_admin_default_office_claim_path(claim.id), options if authorized?(:assign, :default_office_claim)
     end
   end
 
@@ -158,36 +158,33 @@ ActiveAdmin.register DefaultOfficeClaim, as: 'Default Office Claims' do
     end
   end
 
-  action_item :export,
+  action_item :assign,
               only: :show,
-              if: ->() { authorized? :create, :export } do
+              if: ->() { authorized? :assign, :default_office_claim } do
     options = {
-      :class => "active-admin-export-resource",
-      "data-action" => 'export',
-      "data-confirm" => 'Are you sure ?',
-      "data-inputs" => {external_system_id: ExternalSystem.pluck(:name, :id)}.to_json,
-      "data-resource-id" => resource.id,
-      "data-resource-type" => resource.class
+      class: "member_link",
+      remote: true,
+      data: {
+        action: :assign,
+        confirm: 'This action will transfer this claim to the selected office - are you sure?',
+        inputs: {office: Office.order(name: :asc).excluding_default.pluck(:name, :id)}.to_json,
+        claim_id: resource.id,
+        success_path: admin_default_office_claims_path
+      }
     }
-    link_to 'Export To CCD', export_admin_claim_path, options
+    link_to 'Assign to office', assign_admin_default_office_claim_path(resource.id), options
   end
 
-  member_action :export, method: :post do
-    if authorized? :create, :export
-      response = Admin::ExportClaimsService.call([resource.id], params['external_system_id'].to_i)
-      if response.errors.present?
-        redirect_to admin_claims_path, alert: "An error occured exporting your claim - #{response.errors.full_messages.join('<br/>')}"
+  member_action :assign, method: :post, respond_to: :js do
+    if Admin::AssignClaimService.call(params[:id].to_i, params[:office_id].to_i).valid?
+      alert_msg = 'The claim has been assigned to the office'
+      if params[:success_path].present?
+        redirect_to params[:success_path], path_only: true, alert: alert_msg
       else
-        redirect_to admin_claims_path, notice: 'Claim queued for export'
+        redirect_back alert: alert_msg, fallback_location: admin_default_office_claims_path
       end
-    end
-  end
-
-  member_action :redirect, method: :post, respond_to: :js do
-    if Admin::RedirectClaimService.call(params[:id].to_i, params[:office_id].to_i).valid?
-      redirect_back alert: 'The claim has been redirected to the office', fallback_location: admin_default_office_claims_path
     else
-      redirect_back flash: {error: 'There was an issue redirecting the claim to the office.  Please contact support'}, fallback_location: admin_default_office_claims_path
+      redirect_back flash: {error: 'There was an issue assigning the claim to the office.  Please contact support'}, fallback_location: admin_default_office_claims_path
     end
   end
 end

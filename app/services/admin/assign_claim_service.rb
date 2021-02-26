@@ -1,5 +1,5 @@
 module Admin
-  class RedirectClaimService
+  class AssignClaimService
     include ActiveModel::Model
     include ActiveModel::Attributes
     attribute :claim_id
@@ -14,14 +14,14 @@ module Admin
     end
 
     def call
-      response = HTTParty.post("#{base_url}/v2/claims/redirect_claim",
+      response = HTTParty.post("#{base_url}/v2/claims/assign_claim",
                                headers: {
                                    'Accept': 'application/json',
                                    'Content-Type': 'application/json'
                                },
                                body: {
                                    uuid: SecureRandom.uuid,
-                                   command: 'RedirectClaim',
+                                   command: 'AssignClaim',
                                    data: {
                                        claim_id: claim_id,
                                        office_id: office_id
