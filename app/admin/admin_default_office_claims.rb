@@ -176,7 +176,7 @@ ActiveAdmin.register DefaultOfficeClaim, as: 'Default Office Claims' do
   end
 
   member_action :assign, method: :post, respond_to: :js do
-    if Admin::AssignClaimService.call(params[:id].to_i, params[:office_id].to_i).valid?
+    if Admin::AssignClaimService.call(claim_id: params[:id].to_i, office_id: params[:office_id].to_i, user_id: current_admin_user.id).valid?
       alert_msg = 'The claim has been assigned to the office'
       if params[:success_path].present?
         redirect_to params[:success_path], path_only: true, alert: alert_msg

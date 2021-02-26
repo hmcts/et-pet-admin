@@ -4,9 +4,10 @@ module Admin
     include ActiveModel::Attributes
     attribute :claim_id
     attribute :office_id
+    attribute :user_id
     attribute :base_url
-    def self.call(claim_id, office_id, base_url: ENV.fetch('ET_API_URL'))
-      new(claim_id: claim_id, office_id: office_id, base_url: base_url).call
+    def self.call(claim_id:, office_id:, user_id:, base_url: ENV.fetch('ET_API_URL'))
+      new(claim_id: claim_id, office_id: office_id, user_id: user_id, base_url: base_url).call
     end
 
     def valid?
@@ -24,7 +25,8 @@ module Admin
                                    command: 'AssignClaim',
                                    data: {
                                        claim_id: claim_id,
-                                       office_id: office_id
+                                       office_id: office_id,
+                                       user_id: user_id
                                    },
                                    async: false
                                }.to_json)
