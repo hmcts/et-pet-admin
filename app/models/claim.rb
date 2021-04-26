@@ -15,23 +15,28 @@ class Claim < ApplicationRecord
   belongs_to :primary_representative, class_name: 'Representative', optional: true
   belongs_to :office, foreign_key: :office_code, primary_key: :code
   has_many :exports, -> { order(id: :desc) }, as: :resource
+  has_one :ccd_export, -> { ccd }, as: :resource, class_name: 'Export'
 
   scope :not_exported, -> { joins("LEFT JOIN \"exports\" ON \"exports\".\"resource_id\" = \"claims\".\"id\" AND \"exports\".\"resource_type\" = 'Claim'").where(exports: {id: nil}) }
-  scope :not_exported_to_ccd, -> { joins("LEFT OUTER JOIN \"exports\" ON \"exports\".\"resource_id\" = \"claims\".\"id\" AND \"exports\".\"resource_type\" = 'Claim' LEFT OUTER JOIN \"external_systems\" ON \"exports\".\"external_system_id\" = \"external_systems\".\"id\" AND \"external_systems\".\"reference\" ~ 'ccd'").where(external_systems: {id: nil}) }
+  scope :not_exported_to_ecm, -> do
+    joins("INNER JOIN external_systems ON external_systems.office_codes @> ARRAY[claims.office_code] AND external_systems.reference ~ 'ccd'")
+      .joins("LEFT OUTER JOIN \"exports\" ON \"exports\".\"resource_id\" = \"claims\".\"id\" AND \"exports\".\"resource_type\" = 'Claim'")
+        .where('external_systems.id IS NULL OR exports.state != ?', 'complete')
+  end
 
   def name
     claimant = primary_claimant
     "#{claimant.title} #{claimant.first_name} #{claimant.last_name}"
   end
 
-  def ccd_state
+  def ecm_state
     export = last_ccd_export
     return '' if export.nil?
     export.state
   end
 
   def last_ccd_export
-    @last__ccd_export ||= exports.ccd.first
+    @last__ccd_export ||= exports.ecm.first
   end
 
   def as_json(options = {})

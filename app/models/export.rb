@@ -7,16 +7,6 @@ class Export < ApplicationRecord
 
   scope :ccd, -> { joins(:external_system).where('external_systems.reference LIKE \'ccd_%\'') }
 
-  def state
-    if events.loaded?
-      return 'complete' if events.detect {|e| e.state == 'complete'}.present?
-    else
-      return 'complete' if events.complete.first.present?
-    end
-
-    key_event&.state || 'created'
-  end
-
   def external_data
     return {} if key_event.nil?
     key_event.data['external_data']
