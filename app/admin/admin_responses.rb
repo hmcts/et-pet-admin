@@ -12,6 +12,7 @@ ActiveAdmin.register Response, as: 'Responses' do
   #   permitted
   # end
 
+
   index download_links: true do
     selectable_column
     column :reference
@@ -83,6 +84,7 @@ ActiveAdmin.register Response, as: 'Responses' do
   remove_filter :agree_with_claimant_notice, :disagree_claimant_notice_reason
   remove_filter :agree_with_claimant_pension_benefits, :disagree_claimant_pension_benefits_reason
   remove_filter :defend_claim, :defend_claim_facts, :updated_at, :pdf_template_reference, :email_template_reference
+  remove_filter :events, :make_employer_contract_claim, :claim_information, :email_receipt, :reference
 
   filter :reference_cont, label: 'Reference'
   filter :case_number
@@ -98,7 +100,7 @@ ActiveAdmin.register Response, as: 'Responses' do
                if:            ->(_user) { authorized? :create, :export } do |ids, inputs|
     response = Admin::ExportResponsesService.call(ids.map(&:to_i), inputs['external_system_id'].to_i)
     if response.errors.present?
-      redirect_to admin_claims_path, alert: "An error occured exporting your responses - #{response.errors.full_messages.join('<br/>')}"
+      redirect_to admin_responses_path, alert: "An error occured exporting your responses - #{response.errors.full_messages.join('<br/>')}"
     else
       redirect_to admin_responses_path, notice: 'Responses queued for export'
     end

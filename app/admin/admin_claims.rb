@@ -21,7 +21,7 @@ ActiveAdmin.register Claim, as: 'Claims' do
   remove_filter :claim_details, :other_outcome, :send_claim_to_whistleblowing_entity
   remove_filter :miscellaneous_information, :is_unfair_dismissal, :primary_claimant, :primary_respondent
   remove_filter :exports, :commands, :events, :pdf_template_reference, :email_template_reference
-  remove_filter :confirmation_email_recipients, :time_zone, :office, :case_type
+  remove_filter :confirmation_email_recipients, :time_zone, :office, :case_type, :ccd_export
   filter :primary_claimant_first_name_cont, label: "Primary claimant first name"
   filter :primary_claimant_last_name_cont, label: "Primary claimant last name"
   filter :primary_respondent_name_or_primary_respondent_contact_cont, label: 'Primary Respondent Name'
@@ -51,8 +51,8 @@ ActiveAdmin.register Claim, as: 'Claims' do
         end
       end.join('').html_safe
     end
-    column :ccd_state do |c|
-      export = c.exports.detect { |e| e.external_system.reference.include?('ccd') }
+    column :ecm_state do |c|
+      export = c.ccd_export
       next '' if export.nil?
       str = export.state
       count = c.claimant_count
@@ -143,7 +143,7 @@ ActiveAdmin.register Claim, as: 'Claims' do
 
   scope :all, default: true
   scope :not_exported
-  scope :not_exported_to_ccd
+  scope :not_exported_to_ecm
 
   batch_action :export,
                form: -> { {external_system_id: ExternalSystem.pluck(:name, :id)} },
