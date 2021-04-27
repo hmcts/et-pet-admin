@@ -19,9 +19,9 @@ class Claim < ApplicationRecord
 
   scope :not_exported, -> { joins("LEFT JOIN \"exports\" ON \"exports\".\"resource_id\" = \"claims\".\"id\" AND \"exports\".\"resource_type\" = 'Claim'").where(exports: {id: nil}) }
   scope :not_exported_to_ecm, -> do
-    joins("INNER JOIN external_systems ON external_systems.office_codes @> ARRAY[claims.office_code] AND external_systems.reference ~ 'ccd'")
-      .joins("LEFT OUTER JOIN \"exports\" ON \"exports\".\"resource_id\" = \"claims\".\"id\" AND \"exports\".\"resource_type\" = 'Claim'")
-        .where('external_systems.id IS NULL OR exports.state != ?', 'complete')
+    joins("INNER JOIN external_systems ON external_systems.office_codes @> ARRAY[claims.office_code] AND external_systems.reference ~ 'ccd' AND external_systems.export_claims = TRUE")
+      .where("(SELECT count(id) FROM exports WHERE exports.external_system_id = external_systems.id AND exports.resource_id = claims.id AND exports.resource_type='Claim' AND exports.state !='complete') > 0")
+      .where("(SELECT count(id) FROM exports WHERE exports.external_system_id = external_systems.id AND exports.resource_id = claims.id AND exports.resource_type='Claim' AND exports.state = 'complete') = 0")
   end
 
   def name
