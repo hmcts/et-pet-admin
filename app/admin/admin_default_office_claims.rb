@@ -50,8 +50,8 @@ ActiveAdmin.register DefaultOfficeClaim, as: 'Default Office Claims' do
         end
       end.join('').html_safe
     end
-    column :ccd_state do |c|
-      export = c.exports.detect { |e| e.external_system.reference.include?('ccd') }
+    column :ecm_state do |c|
+      export = c.ccd_export
       next '' if export.nil?
       str = export.state
       count = c.claimant_count
@@ -145,7 +145,7 @@ ActiveAdmin.register DefaultOfficeClaim, as: 'Default Office Claims' do
 
   scope :all, default: true
   scope :not_exported
-  scope :not_exported_to_ccd
+  scope :not_exported_to_ecm
 
   batch_action :export,
                form: -> { {external_system_id: ExternalSystem.pluck(:name, :id)} },
