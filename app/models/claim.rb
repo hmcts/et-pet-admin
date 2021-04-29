@@ -36,10 +36,10 @@ class Claim < ApplicationRecord
   end
 
   def last_ccd_export
-    @last__ccd_export ||= exports.ecm.first
+    @last__ccd_export ||= exports.ccd.first
   end
 
   def as_json(options = {})
-    super(options.merge include: :uploaded_files, methods: [:ccd_state, :last_ccd_export])
+    super(options.merge include: :uploaded_files, methods: [:ecm_state, :last_ccd_export])
   end
 end
