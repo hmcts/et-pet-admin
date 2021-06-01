@@ -23,6 +23,8 @@ module Super
     config.et_atos_api = ::Rails::Application::Configuration::Custom.new
     config.middleware.insert_before Rack::Sendfile, SetActionMailerHost
 
+    config.action_mailer.default_options = { from: ENV.fetch('SMTP_FROM', 'no-reply@employmenttribunals.service.gov.uk') }
+
     insights_key = ENV.fetch('AZURE_APP_INSIGHTS_KEY', false)
     if insights_key
       config.azure_insights.enable = true
