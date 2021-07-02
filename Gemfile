@@ -62,7 +62,7 @@ end
 
 gem 'devise', '~> 4.7'
 gem 'activeadmin', '~> 2.0'
-gem 'activeadmin_addons', '~> 1.4'
+gem 'activeadmin_addons', '~> 1.8'
 gem 'active_admin_import', '~> 4.1'
 gem 'pundit', '~> 2.0'
 gem 'httparty', '~> 0.17'
