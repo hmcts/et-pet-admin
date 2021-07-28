@@ -85,18 +85,16 @@ ActiveAdmin.register DefaultOfficeClaim, as: 'Default Office Claims' do
           method: :post,
           data: {
             action: :unaction,
-            confirm: 'This action will move this claim back into default office claims - are you sure?',
             claim_id: claim.id
           }
         }
-        item "Un action", unaction_admin_default_office_claim_path(claim.id), action_options if authorized?(:action, :default_office_claim)
+        item "Undo Action", unaction_admin_default_office_claim_path(claim.id), action_options if authorized?(:action, :default_office_claim)
       else
         action_options = {
           class: "member_link",
           method: :post,
           data: {
             action: :action,
-            confirm: 'This action will mark this claim as actioned - which will hide it from view - are you sure?',
             claim_id: claim.id
           }
         }
@@ -207,19 +205,17 @@ ActiveAdmin.register DefaultOfficeClaim, as: 'Default Office Claims' do
         method: :post,
         data: {
           action: :unaction,
-          confirm: 'This action will move this claim back into default office claims - are you sure?',
           claim_id: resource.id,
           success_path: admin_default_office_claims_path
         }
       }
-      link_to 'Un Action', unaction_admin_default_office_claim_path(resource.id), options
+      link_to 'Undo Action', unaction_admin_default_office_claim_path(resource.id), options
     else
       options = {
         class: "member_link",
         method: :post,
         data: {
           action: :action,
-          confirm: 'This action will mark this claim as actioned - which will hide it from view - are you sure?',
           claim_id: resource.id,
           success_path: admin_default_office_claims_path
         }
@@ -251,7 +247,7 @@ ActiveAdmin.register DefaultOfficeClaim, as: 'Default Office Claims' do
   member_action :unaction, method: :post do
     claim = DefaultOfficeClaim.unscoped.find(params[:id])
     claim.update manually_actioned: false
-    alert_msg = 'The claim is now un actioned'
+    alert_msg = 'The claim action is now undone'
     redirect_back alert: alert_msg, fallback_location: admin_default_office_claims_path
   end
 end
