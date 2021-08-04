@@ -23,6 +23,9 @@ class Claim < ApplicationRecord
       .where("(SELECT count(id) FROM exports WHERE exports.external_system_id = external_systems.id AND exports.resource_id = claims.id AND exports.resource_type='Claim' AND exports.state !='complete') > 0")
       .where("(SELECT count(id) FROM exports WHERE exports.external_system_id = external_systems.id AND exports.resource_id = claims.id AND exports.resource_type='Claim' AND exports.state = 'complete') = 0")
   end
+  scope :with_responses, -> do
+    joins("INNER JOIN (#{ClaimResponse.all.to_sql}) claim_responses ON \"claims\".\"id\" = \"claim_responses\".\"claim_id\"")
+  end
 
   def name
     claimant = primary_claimant
