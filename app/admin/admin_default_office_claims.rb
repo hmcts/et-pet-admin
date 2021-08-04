@@ -68,7 +68,7 @@ ActiveAdmin.register DefaultOfficeClaim, as: 'Default Office Claims' do
       "<a href='#{admin_export_url(export.id)}'>#{str}</a> (<a target='_blank' href='#{ENV.fetch('CCD_UI_BASE_URL', '')}/#{export.external_data['case_type_id']}/#{export.external_data['case_id']}'>#{export.external_system.name} - #{export.external_data['case_reference']}</a>)".html_safe
     end
     actions do |claim|
-      options = {
+      assign_options = {
         class: "member_link",
         remote: true,
         data: {
@@ -78,7 +78,28 @@ ActiveAdmin.register DefaultOfficeClaim, as: 'Default Office Claims' do
           claim_id: claim.id
         }
       }
-      item "Assign", assign_admin_default_office_claim_path(claim.id), options if authorized?(:assign, :default_office_claim)
+      item "Assign", assign_admin_default_office_claim_path(claim.id), assign_options if authorized?(:assign, :default_office_claim)
+      if claim.manually_actioned
+        action_options = {
+          class: "member_link",
+          method: :post,
+          data: {
+            action: :unaction,
+            claim_id: claim.id
+          }
+        }
+        item "Undo Action", unaction_admin_default_office_claim_path(claim.id), action_options if authorized?(:action, :default_office_claim)
+      else
+        action_options = {
+          class: "member_link",
+          method: :post,
+          data: {
+            action: :action,
+            claim_id: claim.id
+          }
+        }
+        item "Action", action_admin_default_office_claim_path(claim.id), action_options if authorized?(:action, :default_office_claim)
+      end
     end
   end
 
@@ -143,9 +164,10 @@ ActiveAdmin.register DefaultOfficeClaim, as: 'Default Office Claims' do
     active_admin_comments
   end
 
-  scope :all, default: true
-  scope :not_exported
-  scope :not_exported_to_ecm
+  scope :all, :not_actioned,  default: true
+  scope(:not_exported) { |scope| scope.not_actioned.not_exported }
+  scope(:not_exported_to_ecm) { |scope| scope.not_actioned.not_exported_to_ecm }
+  scope :actioned
 
   batch_action :export,
                form: -> { {external_system_id: ExternalSystem.pluck(:name, :id)} },
@@ -163,7 +185,6 @@ ActiveAdmin.register DefaultOfficeClaim, as: 'Default Office Claims' do
               if: ->() { authorized? :assign, :default_office_claim } do
     options = {
       class: "member_link",
-      remote: true,
       data: {
         action: :assign,
         confirm: 'This action will transfer this claim to the selected office - are you sure?',
@@ -173,6 +194,34 @@ ActiveAdmin.register DefaultOfficeClaim, as: 'Default Office Claims' do
       }
     }
     link_to 'Assign to office', assign_admin_default_office_claim_path(resource.id), options
+  end
+
+  action_item :action,
+              only: :show,
+              if: ->() { authorized? :action, :default_office_claim } do
+    if resource.manually_actioned?
+      options = {
+        class: "member_link",
+        method: :post,
+        data: {
+          action: :unaction,
+          claim_id: resource.id,
+          success_path: admin_default_office_claims_path
+        }
+      }
+      link_to 'Undo Action', unaction_admin_default_office_claim_path(resource.id), options
+    else
+      options = {
+        class: "member_link",
+        method: :post,
+        data: {
+          action: :action,
+          claim_id: resource.id,
+          success_path: admin_default_office_claims_path
+        }
+      }
+      link_to 'Action', action_admin_default_office_claim_path(resource.id), options
+    end
   end
 
   member_action :assign, method: :post, respond_to: :js do
@@ -186,5 +235,19 @@ ActiveAdmin.register DefaultOfficeClaim, as: 'Default Office Claims' do
     else
       redirect_back flash: {error: 'There was an issue assigning the claim to the office.  Please contact support'}, fallback_location: admin_default_office_claims_path
     end
+  end
+
+  member_action :action, method: :post do
+    claim = DefaultOfficeClaim.find(params[:id])
+    claim.update manually_actioned: true
+    alert_msg = 'The claim is now actioned'
+    redirect_back alert: alert_msg, fallback_location: admin_default_office_claims_path
+  end
+
+  member_action :unaction, method: :post do
+    claim = DefaultOfficeClaim.unscoped.find(params[:id])
+    claim.update manually_actioned: false
+    alert_msg = 'The claim action is now undone'
+    redirect_back alert: alert_msg, fallback_location: admin_default_office_claims_path
   end
 end

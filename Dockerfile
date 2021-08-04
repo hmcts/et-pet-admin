@@ -1,4 +1,4 @@
-FROM phusion/passenger-customizable:1.0.12
+FROM phusion/passenger-customizable:1.0.15
 # Or, instead of the 'full' variant, use one of these:
 #FROM phusion/passenger-ruby23:<VERSION>
 #FROM phusion/passenger-ruby24:<VERSION>
@@ -60,6 +60,6 @@ USER app
 ENV HOME /home/app
 WORKDIR /home/app/et3
 ENV RAILS_ENV=production
-RUN bash -lc "gem install bundler -v 1.17.3 && bundle install --jobs=5 --retry=3 --without=test development --with=production"
+RUN bash -lc "rvm use 2.7.3 --default && gem install bundler -v 1.17.3 && bundle install --jobs=5 --retry=3 --without=test development --with=production"
 RUN bash -c "DB_ADAPTOR=nulldb bundle exec rake assets:precompile RAILS_ENV=production ATOS_API_USERNAME=foo ATOS_API_PASSWORD=bar SECRET_KEY_BASE=foo"
 CMD ["./run.sh"]
