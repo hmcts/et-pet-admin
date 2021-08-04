@@ -2,6 +2,7 @@ ActiveAdmin.register Et3ReconciliationReport, as: 'ET3 Reconciliation Report' do
   menu parent: 'Reports',
        url: -> { admin_et3_reconciliation_report_path(id: :query) }
        permit_params :start_date, :end_date
+  actions :show, :index
      
   show do
     active_admin_form_for(resource, url: admin_et3_reconciliation_report_url, method: :get) do |f|
@@ -37,11 +38,20 @@ ActiveAdmin.register Et3ReconciliationReport, as: 'ET3 Reconciliation Report' do
   controller do
     def find_resource
       if params.key?(:et3_reconciliation_report)
-        Et3ReconciliationReport.new(permitted_params[:et3_reconciliation_report]).load
+        report = Et3ReconciliationReport.new(permitted_params[:et3_reconciliation_report])
+        if report.valid?
+          report.load
+        else
+          report
+        end
       else
         Et3ReconciliationReport.new
 
       end
+    end
+
+    def index
+      redirect_to action: :show, id: :query
     end
   end
 end

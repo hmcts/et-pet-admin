@@ -9,6 +9,8 @@ class Et3ReconciliationReport
   attribute :total_response_count
   attribute :uptake
 
+  validates :start_date, :end_date, presence: true
+
   def initialize(*)
     super
     @loaded = false
@@ -20,7 +22,7 @@ class Et3ReconciliationReport
     self.total_claim_count = base_scope.count
     self.response_count = base_scope.with_responses.distinct.count
     self.total_response_count = base_scope.with_responses.count
-    self.uptake = total_response_count.to_f / total_claim_count.to_f
+    self.uptake = total_claim_count.zero? ? 0 : total_response_count.to_f / total_claim_count.to_f
     @loaded = true
     self
   end
