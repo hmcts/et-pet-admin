@@ -28,7 +28,7 @@ jobs:
 - job: BuildAndPushImage
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
   pool:
-    vmImage: 'Ubuntu-16.04'
+    vmImage: 'ubuntu-latest'
   steps:
 
   - bash: |
@@ -58,7 +58,7 @@ jobs:
       azureContainerRegistry: $(azure.container.registry)
       command: 'Tag image'
       imageName: '$(application.name):$(getDockerTag.DOCKER_TAG)'
-    
+
   - task: Docker@1
     displayName: 'Push an image'
     inputs:
@@ -116,11 +116,11 @@ jobs:
   condition: |
     and
     (
-      ne(variables['Build.SourceBranch'], 'refs/heads/develop'), 
+      ne(variables['Build.SourceBranch'], 'refs/heads/develop'),
       eq(variables['Build.Reason'], 'Manual')
     )
   pool:
-    vmImage: 'Ubuntu-16.04'
+    vmImage: 'ubuntu-latest'
   steps:
 
   - bash: |
@@ -150,7 +150,7 @@ jobs:
       azureContainerRegistry: $(azure.container.registry)
       command: 'Tag image'
       imageName: '$(application.name):$(getDockerTag.DOCKER_TAG)'
-    
+
   - task: Docker@1
     displayName: 'Push an image'
     inputs:
