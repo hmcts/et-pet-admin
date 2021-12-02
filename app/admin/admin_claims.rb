@@ -94,8 +94,14 @@ ActiveAdmin.register Claim, as: 'Claims' do
   show do |claim|
     default_attribute_table_rows = active_admin_config.resource_columns
     attributes_table(*default_attribute_table_rows)
-    panel('Files') do
-      table_for claim.uploaded_files do
+    panel('System Files') do
+      table_for claim.uploaded_files.system_file_scope do
+        column(:id) { |r| auto_link r, r.id }
+        column(:filename) { |f| link_to(f.filename, rails_blob_path(f.file, disposition: 'attachment')) if f.file.attached? }
+      end
+    end
+    panel('User Files') do
+      table_for claim.uploaded_files.user_file_scope do
         column(:id) { |r| auto_link r, r.id }
         column(:filename) { |f| link_to(f.filename, rails_blob_path(f.file, disposition: 'attachment')) if f.file.attached? }
       end

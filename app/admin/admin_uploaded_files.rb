@@ -21,6 +21,7 @@ ActiveAdmin.register UploadedFile, as: 'UploadedFiles' do
       row(:filename) { |f| link_to(f.filename, rails_blob_path(f.file, disposition: 'attachment')) if f.file.attached? }
       row :import_file_url
       row :import_from_key
+      row :file_scope
       row :created_at
       row :updated_at
     end
@@ -30,6 +31,7 @@ ActiveAdmin.register UploadedFile, as: 'UploadedFiles' do
     selectable_column
     id_column
     column :filename
+    column :file_scope
     column :created_at
     column :content_type
   end
@@ -39,6 +41,7 @@ ActiveAdmin.register UploadedFile, as: 'UploadedFiles' do
       f.input :filename
       f.input :import_file_url
       f.input :import_from_key
+      f.input :file_scope
       f.input :file, as: :file
     end
     f.actions
