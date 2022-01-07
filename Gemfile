@@ -13,16 +13,10 @@ gem 'azure_env_secrets', git: 'https://github.com/ministryofjustice/azure_env_se
 # Use postgres as the database for Active Record
 gem 'pg', '~> 1.0'
 gem 'iodine', '~> 0.7.43'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 6.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'sprockets', '~> 4.0'
 
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -58,6 +52,15 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :assets do
+  # Use SCSS for stylesheets
+  gem 'sass-rails', '~> 6.0'
+  # Use Uglifier as compressor for JavaScript assets
+  gem 'uglifier', '>= 1.3.0'
+  # Use CoffeeScript for .coffee assets and views
+  gem 'coffee-rails', '~> 5.0'
 end
 
 gem 'devise', '~> 4.7'
