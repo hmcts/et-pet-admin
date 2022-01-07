@@ -38,6 +38,7 @@ COPY --from=assets --chown=app:app /home/app/admin/public/assets /home/app/admin
 #COPY --from=assets --chown=app:app /home/app/admin/vendor/bundle /home/app/admin/vendor/bundle
 RUN chown -R app:app /usr/local/bundle
 RUN apk add --no-cache libpq-dev tzdata gettext shared-mime-info curl-dev bash && \
+    apk add --no-cache postgresql-client~=11.12 --repository=http://dl-cdn.alpinelinux.org/alpine/v3.10/main && \
     apk add --no-cache --virtual .build-tools git build-base && \
     cd /home/app/admin && \
     gem install bundler -v 1.17.3 && \
