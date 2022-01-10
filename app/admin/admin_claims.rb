@@ -147,6 +147,46 @@ ActiveAdmin.register Claim, as: 'Claims' do
     active_admin_comments
   end
 
+  csv do
+    column :claimant_name do |c|
+      c.name
+    end
+    column :respondent_name do |c|
+      c.primary_respondent.name
+    end
+    column :reference
+    column :submission_reference
+    column :submission_channel
+    column :case_type
+    column :claimant_count
+    column :jurisdiction
+    column :office do |c|
+      c.office.name
+    end
+    column :date_of_receipt
+    column :ecm_case_reference do |c|
+      export = c.ccd_export
+      next '' unless export&.state == 'complete'
+      export.external_data['case_reference']
+    end
+
+    column :created_at
+    column :updated_at
+    column :other_known_claimant_names
+    column :discrimination_claims
+    column :pay_claims
+    column :desired_outcomes
+    column :other_claim_details
+    column :claim_details
+    column :other_outcome
+    column :send_claim_to_whistleblowing_entity
+    column :miscellaneous_information
+    column :employment_details
+    column :is_unfair_dismissal
+    column :confirmation_email_recipients
+
+  end
+
   scope :all, default: true
   scope :not_exported
   scope :not_exported_to_ecm
