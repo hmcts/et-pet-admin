@@ -18,7 +18,7 @@ ActiveAdmin.register UploadedFile, as: 'UploadedFiles' do
 
   show do
     attributes_table title: 'File Details' do
-      row(:filename) { |f| link_to(f.filename, rails_storage_proxy_path(f.file, disposition: 'attachment')) if f.file.attached? }
+      row(:filename) { |f| link_to(f.filename, rails_blob_path(f.file, disposition: 'attachment')) if f.file.attached? }
       row :import_file_url
       row :import_from_key
       row :file_scope

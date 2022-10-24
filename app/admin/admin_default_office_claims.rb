@@ -44,7 +44,7 @@ ActiveAdmin.register DefaultOfficeClaim, as: 'Default Office Claims' do
     column :files do |c|
       c.uploaded_files.select {|u| u.filename =~ /\.pdf|\.csv|\.rtf/}.map do |f|
         if f.file.attached?
-          link_to("<span class='claim-file-icon #{f.filename.split('.').last}'></span>".html_safe, rails_storage_proxy_path(f.file, disposition: 'attachment'))
+          link_to("<span class='claim-file-icon #{f.filename.split('.').last}'></span>".html_safe, rails_blob_path(f.file, disposition: 'attachment'))
         else
           "<span class='claim-file-icon problem'></span>".html_safe
         end
@@ -120,7 +120,7 @@ ActiveAdmin.register DefaultOfficeClaim, as: 'Default Office Claims' do
     panel('Files') do
       table_for claim.uploaded_files do
         column(:id) { |r| auto_link r, r.id }
-        column(:filename) { |f| link_to(f.filename, rails_storage_proxy_path(f.file, disposition: 'attachment')) if f.file.attached? }
+        column(:filename) { |f| link_to(f.filename, rails_blob_path(f.file, disposition: 'attachment')) if f.file.attached? }
       end
     end
     panel('Secondary Claimants') do
