@@ -24,7 +24,7 @@ ActiveAdmin.register Response, as: 'Responses' do
     column :files do |response|
       response.uploaded_files.et3_user_files.map do |f|
         if f.file.attached?
-          link_to("<span class='claim-file-icon #{f.filename.split('.').last}'></span>".html_safe, rails_blob_path(f.file, disposition: 'attachment'))
+          link_to("<span class='claim-file-icon #{f.filename.split('.').last}'></span>".html_safe, rails_storage_proxy_path(f.file, disposition: 'attachment'))
         else
           "<span class='claim-file-icon problem'></span>".html_safe
         end
