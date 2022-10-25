@@ -25,6 +25,8 @@ module Super
 
     config.action_mailer.default_options = { from: ENV.fetch('SMTP_FROM', 'no-reply@employmenttribunals.service.gov.uk') }
 
+    Rails.application.config.active_storage.resolve_model_to_route = :rails_storage_proxy
+
     insights_key = ENV.fetch('AZURE_APP_INSIGHTS_KEY', false)
     if insights_key
       config.azure_insights.enable = true
