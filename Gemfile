@@ -29,8 +29,7 @@ gem 'jbuilder', '~> 2.10'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'redis', '~> 5.0'
-gem 'sidekiq', '~> 7.0'
+gem 'sidekiq', '< 7'
 gem 'sidekiq-cron', '~> 1.1'
 gem 'sidekiq-failures', '~> 1.0'
 gem 'sentry-raven', '~> 3.1'
