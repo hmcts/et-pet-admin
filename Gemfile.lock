@@ -173,7 +173,7 @@ GEM
     ffi (1.15.5)
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
-    formtastic_i18n (0.6.0)
+    formtastic_i18n (0.7.0)
     fugit (1.8.1)
       et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
