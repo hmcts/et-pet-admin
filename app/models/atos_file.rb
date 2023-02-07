@@ -38,6 +38,10 @@ class AtosFile
       count
     end
 
+    def length
+      count
+    end
+
     private
 
     def base_url
