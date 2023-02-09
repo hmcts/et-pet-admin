@@ -51,7 +51,7 @@ group :development do
   gem 'listen', '~> 3.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen', '~> 2.1'
 end
 
 group :assets do
@@ -66,7 +66,7 @@ end
 gem 'devise', '~> 4.7'
 gem 'activeadmin', '~> 2.0'
 gem 'activeadmin_addons', '~> 1.4'
-gem 'active_admin_import', '~> 4.1'
+gem 'active_admin_import', '~> 5.0'
 gem 'pundit', '~> 2.0'
 gem 'httparty', '~> 0.17'
 gem 'dotenv-rails', '~> 2.7'
