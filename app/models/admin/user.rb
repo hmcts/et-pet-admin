@@ -4,6 +4,8 @@ module Admin
     validates :username, presence: true, uniqueness: true,
                          length: { minimum: 4, maximum: 30 }, username: true
     validates :name, :department, :role_ids, presence: true, on: :create
+    validates :name, format: { with: /\A[a-zA-Z]+\z/, message: 'must consist of letters only' }
+
     self.table_name = :admin_users
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
