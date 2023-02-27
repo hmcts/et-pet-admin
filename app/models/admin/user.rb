@@ -4,13 +4,14 @@ module Admin
     validates :username, presence: true, uniqueness: true,
                          length: { minimum: 4, maximum: 30 }, username: true
     validates :name, :department, :role_ids, presence: true, on: :create
-    validates :name, format: { with: /\A[a-zA-Z][a-zA-Z ]+\z/, message: 'must consist of letters and spaces only' }
+    validates :name,
+              format: { with: /\A[a-zA-Z][a-zA-Z ,.'-]+\z/, message: "must consist of letters, spaces and ,.'- only" }
 
     self.table_name = :admin_users
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable,
-      :recoverable, :rememberable, :trackable, :validatable, :lockable, :timeoutable
+           :recoverable, :rememberable, :trackable, :validatable, :lockable, :timeoutable
 
     has_many :user_roles, class_name: 'Admin::UserRole'
     has_many :roles, class_name: 'Admin::Role', through: :user_roles
