@@ -13,6 +13,8 @@ ActiveAdmin.register Response, as: 'Responses' do
   # end
 
 
+  permit_params :respondent_id,
+                :reference, :case_number, :claimants_name, :office_id, :representative_id, :date_of_receipt
   index download_links: true do
     selectable_column
     column :reference
@@ -21,6 +23,7 @@ ActiveAdmin.register Response, as: 'Responses' do
     end
     column :case_number
     column :claimants_name
+    column :office
     column :files do |response|
       response.uploaded_files.et3_user_files.map do |f|
         if f.file.attached?
@@ -73,6 +76,18 @@ ActiveAdmin.register Response, as: 'Responses' do
     active_admin_comments
   end
 
+  form do |f|
+    f.inputs do
+      f.input :respondent_id, as: :search_select, label: 'Respondent', method_model: Respondent, url: admin_respondents_path, display_name: 'name'
+      f.input :representative_id, as: :search_select, label: 'Representative', method_model: Representative
+      f.input :office
+      f.input :date_of_receipt, as: :datepicker
+      f.input :reference
+      f.input :case_number
+      f.input :claimants_name
+    end
+    f.actions
+  end
   preserve_default_filters!
   remove_filter :respondent, :representative, :response_uploaded_files, :uploaded_files, :exports, :commands
   remove_filter :agree_with_early_conciliation_details, :disagree_conciliation_reason, :agree_with_employment_dates
