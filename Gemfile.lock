@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/hmcts/et-azure-insights.git
-  revision: ed151854a76d6abd210793039d5172df7f51a0fe
-  tag: v1.0.0
+  revision: 1aa89eff387d15f680e5aa2368422f091ebdeae0
+  tag: v0.3.2
   specs:
-    et_azure_insights (1.0.0)
+    et_azure_insights (0.3.2)
       application_insights (~> 0.5.7)
 
 GIT
@@ -381,7 +381,7 @@ DEPENDENCIES
   coffee-rails (~> 5.0)
   devise (~> 4.7)
   dotenv-rails (~> 2.7)
-  et_azure_insights!
+  et_azure_insights (= 0.3.2)!
   httparty (~> 0.17)
   iodine (~> 0.7.43)
   jbuilder (~> 2.10)
