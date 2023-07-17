@@ -32,7 +32,9 @@ gem 'jbuilder', '~> 2.10'
 gem 'sidekiq', '< 7'
 gem 'sidekiq-cron', '~> 1.1'
 gem 'sidekiq-failures', '~> 1.0'
-gem 'sentry-raven', '~> 3.1'
+gem "sentry-ruby", "~> 5.9"
+gem "sentry-rails", "~> 5.9"
+gem "sentry-sidekiq", "~> 5.9"
 
 # Azure gem for active storage
 gem 'azure-storage-blob', '~> 2.0', '>= 2.0.1'
@@ -73,7 +75,7 @@ gem 'httparty', '~> 0.17'
 gem 'dotenv-rails', '~> 2.7'
 
 
-gem 'et_azure_insights', '0.2.12', git: 'https://github.com/hmcts/et-azure-insights.git', tag: 'v0.2.12'
+gem 'et_azure_insights', '0.3.2', git: 'https://github.com/hmcts/et-azure-insights.git', tag: 'v0.3.2'
 gem 'application_insights', git: 'https://github.com/microsoft/ApplicationInsights-Ruby.git', ref: '5db6b4'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

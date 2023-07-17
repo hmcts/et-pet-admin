@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/hmcts/et-azure-insights.git
-  revision: b2d677431b449062c6f7cb8a0cae6b28c6f76d65
-  tag: v0.2.12
+  revision: 1aa89eff387d15f680e5aa2368422f091ebdeae0
+  tag: v0.3.2
   specs:
-    et_azure_insights (0.2.12)
+    et_azure_insights (0.3.2)
       application_insights (~> 0.5.7)
 
 GIT
@@ -313,8 +313,14 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sentry-raven (3.1.2)
-      faraday (>= 1.0)
+    sentry-rails (5.9.0)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.9.0)
+    sentry-ruby (5.9.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+    sentry-sidekiq (5.9.0)
+      sentry-ruby (~> 5.9.0)
+      sidekiq (>= 3.0)
     sidekiq (6.5.8)
       connection_pool (>= 2.2.5, < 3)
       rack (~> 2.0)
@@ -375,7 +381,7 @@ DEPENDENCIES
   coffee-rails (~> 5.0)
   devise (~> 4.7)
   dotenv-rails (~> 2.7)
-  et_azure_insights (= 0.2.12)!
+  et_azure_insights (= 0.3.2)!
   httparty (~> 0.17)
   iodine (~> 0.7.43)
   jbuilder (~> 2.10)
@@ -384,7 +390,9 @@ DEPENDENCIES
   pundit (~> 2.0)
   rails (= 7.0.4.2)
   sass-rails (~> 6.0)
-  sentry-raven (~> 3.1)
+  sentry-rails (~> 5.9)
+  sentry-ruby (~> 5.9)
+  sentry-sidekiq (~> 5.9)
   sidekiq (< 7)
   sidekiq-cron (~> 1.1)
   sidekiq-failures (~> 1.0)
@@ -399,4 +407,4 @@ DEPENDENCIES
   web-console (~> 4.1)
 
 BUNDLED WITH
-   1.17.3
+   2.1.4
