@@ -20,7 +20,7 @@ FileUtils.chdir APP_ROOT do
 
   if ENV.fetch('RAILS_ENV', 'development') == 'development'
     puts "\n== bundling for development"
-    system! 'bundle config set with "development:test"'
+    system! 'bundle config set with "development test"'
     system! 'bundle config --delete without'
   else
     puts "\n== bundling for production"
