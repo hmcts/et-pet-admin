@@ -60,6 +60,7 @@ group :development do
   gem 'web-console', '~> 4.1'
   gem 'listen', '~> 3.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'simplecov', '~> 0.22.0'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.1'
   gem 'byebug'
