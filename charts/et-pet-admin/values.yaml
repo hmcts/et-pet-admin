@@ -3,8 +3,74 @@ base:
   readinessPath: /ping.json
   livenessPath: /ping.json
   startupPath: /ping.json
-  image: 'hmctspublic.azurecr.io/et-pet/admin:latest'
+  image: "hmctspublic.azurecr.io/et-pet/admin:latest"
   ingressHost: et-pet-admin.{{ .Values.global.environment }}.platform.hmcts.net
   aadIdentityName: admin-pet
   environment:
-    RAILS_ENV: 'production'
+    RAILS_ENV: "production"
+    SECRETS_PATH: "/kvmnt/"
+    RAILS_SERVE_STATIC_FILES: true
+    REMOVE_ASSET_HOST: "https://bbea327e42bedevetadmin.blob.core.windows.net/"
+    SECRET_KEY_BASE:
+      secretRef: "admin-secret-key-base"
+      key: "admin-secret-key-base"
+      disabled: false
+    DEVISE_SECRET_KEY:
+      secretRef: "admin-devise-secret-key"
+      key: "admin-devise-secret-key"
+      disabled: false
+    ATOS_API_USERNAME:
+      secretRef: "admin-atos-api-username"
+      key: "admin-atos-api-username"
+      disabled: false
+    ATOS_API_PASSWORD:
+      secretRef: "admin-atos-api-password"
+      key: "admin-atos-api-password"
+      disabled: false
+    SMTP_USERNAME:
+      secretRef: "admin-smtp-sendgrid-username"
+      key: "admin-smtp-sendgrid-username"
+      disabled: false
+    SMTP_PASSWORD:
+      secretRef: "admin-smtp-sendgrid-password"
+      key: "admin-smtp-sendgrid-password"
+      disabled: false
+    RAVEN_DSN:
+      secretRef: "admin-raven-dsn"
+      key: "admin-raven-dsn"
+      disabled: false
+    AZURE_STORAGE_ACCESS_KEY:
+      secretRef: "admin-azure-storage-access-key"
+      key: "admin-azure-storage-access-key"
+      disabled: false
+    AZURE_STORAGE_DIRECT_UPLOAD_ACCESS_KEY:
+      secretRef: "admin-azure-storage-direct-upload-access-key"
+      key: "admin-azure-storage-direct-upload-access-key"
+      disabled: false
+    CLOUD_PROVIDER: "azure"
+    AZURE_STORAGE_ACCOUNT: "devet"
+    AZURE_STORAGE_DIRECT_UPLOAD_ACCOUNT: "devetupload"
+    AZURE_STORAGE_CONTAINER: "et-container"
+    AZURE_STORAGE_DIRECT_UPLOAD_CONTAINER: "et-upload-container"
+    DB_HOST: "employment-tribunals-api-demo.postgres.database.azure.com"
+    DB_PORT: 5432
+    DB_USERNAME: "employment_tribunals_postgresql_user@employment-tribunals-api-demo"
+    DB_NAME: "etapi"
+    SEED_EXAMPLE_USERS: true
+    ACAS_SERVICE_URL: "https://testec.acas.org.uk/Lookup/ECService.svc"
+    SMTP_HOSTNAME: "smtp.sendgrid.net"
+    SMTP_PORT: 587
+    RAILS_LOG_LEVEL: "info"
+    RACK_ENV: "production"
+    WEB_CONCURRENCY: 3
+    ATOS_API_URL: "http://et-atos-api.employmenttribunal:8080"
+    ACAS_API_URL: "http://et-api.employmenttribunal:8080/et_acas_api"
+    ET_API_URL: "http://et-api.employmenttribunal:8080/api"
+    RAILS_LOG_TO_STDOUT: true
+    RAVEN_SSL_VERIFICATION: false
+    CCD_UI_BASE_URL: "https://www.ccd.demo.platform.hmcts.net/case/EMPLOYMENT"
+    AZURE_APP_INSIGHTS_KEY:
+      secretRef: "admin-appinsights-key"
+      key: "admin-appinsights-key"
+      disabled: false
+    AZURE_APP_INSIGHTS_ROLE_NAME: "ET-ADMIN"
