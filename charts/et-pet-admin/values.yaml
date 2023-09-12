@@ -1,13 +1,10 @@
 base:
   applicationPort: 8080
-  readinessPath: /ping.json
-  livenessPath: /ping.json
-  startupPath: /ping.json
   image: "hmctspublic.azurecr.io/et-pet/admin:latest"
   ingressHost: et-pet-admin.{{ .Values.global.environment }}.platform.hmcts.net
   aadIdentityName: et-pet
   environment:
-    SECRETS_PATH: "/kvmnt/"
+    SECRETS_PATH: "/mnt/secrets/et-pet"
     RAILS_SERVE_STATIC_FILES: true
     CLOUD_PROVIDER: "azure"
     SEED_EXAMPLE_USERS: true
@@ -28,15 +25,31 @@ base:
     MAINTENANCE_ENABLED: false
     MAINTENANCE_END: "9am (if you're seeing this message after this time it means things are taking a little longer than expected.) Please check back again soon."
     MAINTENANCE_ALLOWED_IPS: "109.157.179.51,151.225.112.106"
+    SERVICE_FQDN: ${SERVICE_FQDN}
+    DB_SSL_MODE: "require"
+    REDIS_HOST: "et-pet-api-{{ .Values.global.environment }}.redis.cache.windows.net"
+    REDIS_PORT: 6379
+    AZURE_STORAGE_ACCOUNT: etpetsa{{ .Values.global.environment }}
+    AZURE_STORAGE_DIRECT_UPLOAD_ACCOUNT: etpetsa{{ .Values.global.environment }}
+    AZURE_STORAGE_CONTAINER: private
+    AZURE_STORAGE_DIRECT_UPLOAD_CONTAINER: public
   keyVaults:
     et-pet:
       secrets:
+        - name: etapi-redis-access-key
+          alias: REDIS_PASSWORD
+        - name: api-azure-storage-access-key
+          alias: AZURE_STORAGE_ACCESS_KEY
+        - name: api-azure-storage-direct-upload-access-key
+          alias: AZURE_STORAGE_DIRECT_UPLOAD_ACCESS_KEY
         - name: et-api-postgres-host
           alias: DB_HOST
         - name: et-api-postgres-port
           alias: DB_PORT
         - name: et-api-postgres-user
           alias: DB_USERNAME
+        - name: et-api-postgres-password
+          alias: DB_PASSWORD
         - name: et-api-postgres-database
           alias: DB_NAME
         - name: admin-secret-key-base
