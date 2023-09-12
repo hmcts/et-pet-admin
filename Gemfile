@@ -11,7 +11,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '7.0.7.1'
 # Azure deployment so we need this
-gem 'azure_env_secrets', git: 'https://github.com/ministryofjustice/azure_env_secrets.git', tag: 'v0.1.3'
+gem 'azure_env_secrets', git: 'https://github.com/hmcts/azure_env_secrets.git', tag: 'v1.0.1'
 # Use postgres as the database for Active Record
 gem 'pg', '~> 1.0'
 gem 'iodine', '~> 0.7.43'
