@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.10'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'sidekiq', '< 7'
+gem 'sidekiq', git: 'https://github.com/sidekiq/sidekiq.git', branch: '6-x'
 gem 'sidekiq-cron', '~> 1.1'
 gem 'sidekiq-failures', '~> 1.0'
 gem "sentry-ruby", "~> 5.9"
