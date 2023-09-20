@@ -20,16 +20,6 @@ GIT
   specs:
     application_insights (0.5.7)
 
-GIT
-  remote: https://github.com/sidekiq/sidekiq.git
-  revision: 101435c5a73095ca62b610d5d6456e7e5dc7f81a
-  branch: 6-x
-  specs:
-    sidekiq (6.5.9)
-      connection_pool (>= 2.2.5, < 3)
-      rack (~> 2.0)
-      redis (>= 4.5.0, < 5)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -359,6 +349,10 @@ GEM
     sentry-sidekiq (5.10.0)
       sentry-ruby (~> 5.10.0)
       sidekiq (>= 3.0)
+    sidekiq (6.5.9)
+      connection_pool (>= 2.2.5, < 3)
+      rack (~> 2.0)
+      redis (>= 4.5.0, < 5)
     sidekiq-cron (1.10.1)
       fugit (~> 1.8)
       globalid (>= 1.0.1)
@@ -437,7 +431,7 @@ DEPENDENCIES
   sentry-rails (~> 5.9)
   sentry-ruby (~> 5.9)
   sentry-sidekiq (~> 5.9)
-  sidekiq!
+  sidekiq (< 7)
   sidekiq-cron (~> 1.1)
   sidekiq-failures (~> 1.0)
   simplecov (~> 0.22.0)
