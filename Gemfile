@@ -76,7 +76,7 @@ group :assets do
 end
 
 gem 'devise', '~> 4.7'
-gem 'activeadmin', '~> 2.0'
+gem 'activeadmin', '~> 3.0'
 gem 'activeadmin_addons', '~> 1.4'
 gem 'active_admin_import', '~> 5.0'
 gem 'pundit', '~> 2.0'
