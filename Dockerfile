@@ -9,6 +9,7 @@ RUN apk add --no-cache libpq-dev tzdata gettext shared-mime-info libc6-compat &&
     apk add --no-cache --virtual .build-tools git build-base curl-dev nodejs yarn && \
     cd /home/app/admin && \
     gem install bundler && \
+    bundle update --bundler && \
     bundle config set without 'test development' && \
     bundle config set with 'assets production' && \
     bundle config set deployment 'true' && \
