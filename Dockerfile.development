@@ -24,6 +24,7 @@ RUN apk add --no-cache libpq-dev tzdata gettext shared-mime-info libc6-compat cu
     apk add --no-cache git build-base nodejs yarn && \
     cd /home/app/admin && \
     gem install bundler && \
+    bundle update --bundler && \
     bundle config set deployment 'true' && \
     bundle install --no-cache --jobs=5 --retry=3 && \
     yarn install && \
