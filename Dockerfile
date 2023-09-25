@@ -52,6 +52,7 @@ RUN apk add --no-cache libpq-dev tzdata gettext shared-mime-info libc6-compat cu
     bundle install --no-cache --jobs=5 --retry=3 && \
     apk del .build-tools && \
     chown -R app:app /usr/local/bundle && \
+    chown -R app:app /home/app/admin/vendor/bundle && \
     mkdir -p /home/app/admin/tmp && \
     chown -R app:app /home/app/admin/tmp
 
