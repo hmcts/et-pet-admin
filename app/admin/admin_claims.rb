@@ -25,8 +25,8 @@ ActiveAdmin.register Claim, as: 'Claims' do
   filter :primary_claimant_first_name_cont, label: "Primary claimant first name"
   filter :primary_claimant_last_name_cont, label: "Primary claimant last name"
   filter :primary_respondent_name_or_primary_respondent_contact_cont, label: 'Primary Respondent Name'
-  filter :office_code_equals, as: :select, label: 'Office', collection: proc { Office.all.map {|o| [o.name, o.code]} }
-  filter :case_type_equals, as: :select, label: 'Case Type', collection: [ 'Single', 'Multiple' ]
+  filter :office_code_eq, as: :select, label: 'Office', collection: proc { Office.all.map {|o| [o.name, o.code]} }
+  filter :case_type_eq, as: :select, label: 'Case Type', collection: [ 'Single', 'Multiple' ]
   includes :secondary_claimants, :primary_claimant, :secondary_respondents, :primary_respondent, :exports, :office, uploaded_files: [:file_blob], exports: [:external_system, :events]
 
   index do

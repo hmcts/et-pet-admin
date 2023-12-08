@@ -9,7 +9,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '7.0.7.1'
+gem 'rails', '7.1.2'
 # Azure deployment so we need this
 gem 'azure_env_secrets', git: 'https://github.com/hmcts/azure_env_secrets.git', tag: 'v1.0.1'
 # Use postgres as the database for Active Record
@@ -76,7 +76,7 @@ group :assets do
 end
 
 gem 'devise', '~> 4.7'
-gem 'activeadmin', '~> 2.0'
+gem 'activeadmin', '~> 3.1'
 gem 'activeadmin_addons', '~> 1.4'
 gem 'active_admin_import', '~> 5.0'
 gem 'pundit', '~> 2.0'

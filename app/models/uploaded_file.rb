@@ -6,6 +6,11 @@ class UploadedFile < ApplicationRecord
   scope :user_only, -> { where "filename LIKE '%.pdf' OR filename LIKE '%.rtf' OR filename LIKE '%.csv'" }
   scope :et3_user_files, -> { where(filename: %w[et3_atos_export.pdf additional_information.rtf]) }
   enum file_scope: { user: 'user', system: 'system' }, _suffix: true
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[claim_uploaded_files file_attachment file_blob response_uploaded_files]
+  end
+
   def content_type
     file&.attachment&.blob&.content_type
   end

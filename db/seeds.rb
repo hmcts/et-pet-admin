@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 controlled_resources = [:offices, :jobs, :acas, :acas_download_logs,
-  :addresses, :atos_files, :claims, :claimants, :exports, :exported_files,
+  :addresses, :claims, :claimants, :exports, :exported_files,
   :roles, :representatives, :respondents, :responses, :uploaded_files, :users,
   :acas_check_digits, :reference_number_generators]
 

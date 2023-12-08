@@ -13,6 +13,12 @@ class Response < ApplicationRecord
 
   scope :not_exported, -> { joins("LEFT JOIN \"exports\" ON \"exports\".\"resource_id\" = \"responses\".\"id\" AND \"exports\".\"resource_type\" = 'Response'").where(exports: {id: nil}) }
   scope :not_exported_to_ccd, -> { joins("LEFT OUTER JOIN \"exports\" ON \"exports\".\"resource_id\" = \"responses\".\"id\" AND \"exports\".\"resource_type\" = 'Response' LEFT OUTER JOIN \"external_systems\" ON \"exports\".\"external_system_id\" = \"external_systems\".\"id\" AND \"external_systems\".\"reference\" ~ 'ccd'").where(external_systems: {id: nil}) }
+
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[commands events exports office representative respondent response_uploaded_files uploaded_files]
+  end
+
   def as_json(options = {})
     super(options.merge include: :uploaded_files, methods: [:ccd_state])
   end
