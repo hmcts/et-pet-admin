@@ -5,6 +5,10 @@ class AcasCertificate
 
   attr_accessor :id, :claimant_name, :respondent_name, :certificate_number, :date_of_issue, :date_of_receipt, :message, :method_of_issue, :certificate_base64
 
+  def self.ransackable_attributes(auth_object = nil)
+    authorizable_ransackable_attributes
+  end
+
   def self.find(id, current_admin_user:)
     return nil_instance if id.nil?
     base_url = ENV.fetch('ACAS_API_URL')

@@ -1,4 +1,4 @@
-class Et3ReconciliationReport 
+class Et3ReconciliationReport
   include ActiveModel::Model
   include ActiveModel::Attributes
 
@@ -10,6 +10,10 @@ class Et3ReconciliationReport
   attribute :uptake
 
   validates :start_date, :end_date, presence: true
+
+  def self.ransackable_attributes(auth_object = nil)
+    authorizable_ransackable_attributes
+  end
 
   def initialize(*)
     super

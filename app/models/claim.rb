@@ -27,6 +27,10 @@ class Claim < ApplicationRecord
     joins("INNER JOIN (#{ClaimResponse.all.to_sql}) claim_responses ON \"claims\".\"id\" = \"claim_responses\".\"claim_id\"")
   end
 
+  def self.ransackable_associations(auth_object = nil)
+    %w[ccd_export claim_claimants claim_representatives claim_respondents claim_uploaded_files commands events exports office primary_claimant primary_representative primary_respondent secondary_claimants secondary_representatives secondary_respondents uploaded_files]
+  end
+
   def name
     claimant = primary_claimant
     "#{claimant.title} #{claimant.first_name} #{claimant.last_name}"

@@ -6,6 +6,10 @@ module Admin
 
   validates :postcode, postcode: true
 
+  def self.ransackable_attributes(auth_object = nil)
+    authorizable_ransackable_attributes
+  end
+
   def self.inheritance_column
     :type
   end
