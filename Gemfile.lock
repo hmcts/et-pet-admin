@@ -135,7 +135,7 @@ GEM
       nokogiri (~> 1, >= 1.10.8)
     base64 (0.2.0)
     bcrypt (3.1.19)
-    bigdecimal (3.1.4)
+    bigdecimal (3.1.5)
     bindex (0.8.1)
     builder (3.2.4)
     bundler-audit (0.9.1)
@@ -279,7 +279,7 @@ GEM
     pg (1.5.4)
     psych (5.1.1.1)
       stringio
-    pundit (2.3.0)
+    pundit (2.3.1)
       activesupport (>= 3.0.0)
     raabro (1.4.0)
     racc (1.7.3)
