@@ -6,6 +6,10 @@ class OfficePostCode < ApplicationRecord
   validates :postcode, presence: true
   validates_uniqueness_of :postcode, case_sensitive: false
 
+  def self.ransackable_associations(auth_object = nil)
+    ['office']
+  end
+
   def to_s
     postcode
   end
