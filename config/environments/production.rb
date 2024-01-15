@@ -77,6 +77,11 @@ Rails.application.configure do
   # config.active_job.queue_adapter = :resque
   # config.active_job.queue_name_prefix = "super_production"
 
+  config.action_dispatch.default_headers = {
+    'Cache-Control' => 'no-store, no-cache, max-age=0, must-revalidate, post-check=0, pre-check=0',
+    'Pragma' => 'no-cache',
+    'Expires' => 'Fri, 01 Jan 1990 00:00:00 GMT'
+  }
   config.action_mailer.perform_caching = false
 
   config.action_mailer.smtp_settings = {
