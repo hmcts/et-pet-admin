@@ -37,6 +37,9 @@ gem 'sidekiq-failures', '~> 1.0'
 gem "sentry-ruby", "~> 5.9"
 gem "sentry-rails", "~> 5.9"
 gem "sentry-sidekiq", "~> 5.9"
+gem 'rubocop', '~> 1.8', require: false
+gem "rubocop-rails", "~> 2.17", require: false
+gem 'rubocop-rspec', '~> 2.1', require: false
 
 # Azure gem for active storage
 gem 'azure-storage-blob', '~> 2.0', '>= 2.0.1'
