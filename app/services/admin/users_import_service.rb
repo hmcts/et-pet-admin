@@ -69,7 +69,7 @@ module Admin
     end
 
     def import_grouped_rows(role_name, rows)
-      return if rows.length == 0
+      return if rows.length.zero?
       role = Role.find_by(name: role_name)
       default_attributes = { }
       new_user = User.create!(normalize_row(rows.first).merge(default_attributes).merge(role_ids: [role.id]))

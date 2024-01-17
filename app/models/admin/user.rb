@@ -20,11 +20,12 @@ module Admin
     before_save :cache_permissions
 
     def self.ransackable_attributes(auth_object = nil)
-      %w[created_at current_sign_in_at current_sign_in_ip department email encrypted_password failed_attempts id id_value is_admin last_sign_in_at last_sign_in_ip locked_at name permission_names remember_created_at reset_password_sent_at reset_password_token sign_in_count unlock_token updated_at username]
+      ['created_at', 'current_sign_in_at', 'current_sign_in_ip', 'department', 'email', 'encrypted_password', 'failed_attempts', 'id', 'id_value', 'is_admin', 'last_sign_in_at',
+       'last_sign_in_ip', 'locked_at', 'name', 'permission_names', 'remember_created_at', 'reset_password_sent_at', 'reset_password_token', 'sign_in_count', 'unlock_token', 'updated_at', 'username']
     end
 
     def self.ransackable_associations(auth_object = nil)
-      %w[permissions roles user_roles]
+      ['permissions', 'roles', 'user_roles']
     end
 
     private

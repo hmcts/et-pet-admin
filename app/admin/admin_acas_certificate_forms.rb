@@ -33,7 +33,12 @@ ActiveAdmin.register AcasCertificateForm, as: 'Acas Certificates' do
         end
         div class: 'acas-certificate' do
           attributes_table title: 'Certificate' do
-            row(:certificate_download) { |r| a(download: "#{r.respondent_name} - #{r.claimant_name}.pdf", type: 'application/pdf', href: "data:application/pdf;base64,#{r.certificate.certificate_base64}") { 'Download' } }
+            row(:certificate_download) do |r|
+              a(download: "#{r.respondent_name} - #{r.claimant_name}.pdf", type: 'application/pdf',
+                href: "data:application/pdf;base64,#{r.certificate.certificate_base64}") do
+                'Download'
+              end
+            end
             row(:certificate_preview) { |r| iframe src: "data:application/pdf;base64,#{r.certificate.certificate_base64}" }
           end
         end

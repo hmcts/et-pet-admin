@@ -7,7 +7,7 @@ class ExternalSystem < ApplicationRecord
   accepts_nested_attributes_for :configurations, reject_if: :all_blank
 
   def self.ransackable_associations(auth_object = nil)
-    %w[configurations]
+    ['configurations']
   end
 
   def as_json(options = {})
