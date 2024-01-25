@@ -8,8 +8,8 @@ ENV HOME=/home/app
 RUN apk add --no-cache libpq-dev tzdata gettext shared-mime-info libc6-compat && \
     apk add --no-cache --virtual .build-tools git build-base curl-dev nodejs yarn && \
     cd /home/app/admin && \
-    gem install bundler && \
-    bundle update --bundler && \
+    BUNDLER_VERSION=$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1 | awk '{$1=$1};1') && \
+    gem install bundler:$BUNDLER_VERSION invoker && \
     bundle config set without 'test development' && \
     bundle config set with 'assets production' && \
     bundle config set deployment 'true' && \
@@ -45,7 +45,8 @@ RUN apk add --no-cache libpq-dev tzdata gettext shared-mime-info libc6-compat cu
     apk add --no-cache postgresql-client~=11.12 --repository=http://dl-cdn.alpinelinux.org/alpine/v3.10/main && \
     apk add --no-cache --virtual .build-tools git build-base && \
     cd /home/app/admin && \
-    gem install bundler && \
+    BUNDLER_VERSION=$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1 | awk '{$1=$1};1') && \
+    gem install bundler:$BUNDLER_VERSION invoker && \
     bundle config set without 'test development assets' && \
     bundle config set with 'production' && \
     bundle config set deployment 'true' && \
