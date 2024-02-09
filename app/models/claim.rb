@@ -17,7 +17,9 @@ class Claim < ApplicationRecord
   has_many :exports, -> { order(id: :desc) }, as: :resource
   has_one :ccd_export, -> { ccd }, as: :resource, class_name: 'Export'
 
-  scope :not_exported, -> { joins("LEFT JOIN \"exports\" ON \"exports\".\"resource_id\" = \"claims\".\"id\" AND \"exports\".\"resource_type\" = 'Claim'").where(exports: {id: nil}) }
+  scope :not_exported, -> {
+                         joins("LEFT JOIN \"exports\" ON \"exports\".\"resource_id\" = \"claims\".\"id\" AND \"exports\".\"resource_type\" = 'Claim'").where(exports: {id: nil})
+                       }
   scope :not_exported_to_ecm, -> do
     joins("INNER JOIN external_systems ON external_systems.office_codes @> ARRAY[claims.office_code] AND external_systems.reference ~ 'ccd' AND external_systems.export_claims = TRUE")
       .where("(SELECT count(id) FROM exports WHERE exports.external_system_id = external_systems.id AND exports.resource_id = claims.id AND exports.resource_type='Claim' AND exports.state !='complete') > 0")
@@ -28,7 +30,8 @@ class Claim < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    %w[ccd_export claim_claimants claim_representatives claim_respondents claim_uploaded_files commands events exports office primary_claimant primary_representative primary_respondent secondary_claimants secondary_representatives secondary_respondents uploaded_files]
+    ['ccd_export', 'claim_claimants', 'claim_representatives', 'claim_respondents', 'claim_uploaded_files', 'commands', 'events', 'exports', 'office', 'primary_claimant',
+     'primary_representative', 'primary_respondent', 'secondary_claimants', 'secondary_representatives', 'secondary_respondents', 'uploaded_files']
   end
 
   def name

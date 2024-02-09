@@ -69,7 +69,8 @@ ActiveAdmin.register UploadedFile, as: 'UploadedFiles' do
 
   member_action :export_ccd_multiples, method: :post do
     if authorized? :export_ccd_multiples, :uploaded_file
-      Sidekiq::Client.new(Sidekiq.redis_pool).push('class' => '::EtExporter::ExportMultiplesWorkaroundWorker', 'args' => [resource.file.service_url, params[:case_type_id]], 'queue' => 'external_system_ccd', 'retry' => false)
+      Sidekiq::Client.new(Sidekiq.redis_pool).push('class' => '::EtExporter::ExportMultiplesWorkaroundWorker', 'args' => [resource.file.service_url, params[:case_type_id]],
+                                                   'queue' => 'external_system_ccd', 'retry' => false)
       redirect_to admin_uploaded_file_path, notice: 'The file has been queued for export - please verify manually'
     end
   end

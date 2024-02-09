@@ -7,6 +7,6 @@ class Respondent < ApplicationRecord
   accepts_nested_attributes_for :work_address
 
   def self.ransackable_associations(auth_object = nil)
-    %w[address work_address]
+    ['address', 'work_address']
   end
 end

@@ -5,6 +5,6 @@ class Office < ApplicationRecord
   scope :excluding_default, -> { where(is_default: false) }
 
   def self.ransackable_associations(auth_object = nil)
-    %w[office_post_codes]
+    ['office_post_codes']
   end
 end

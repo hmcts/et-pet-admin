@@ -9,7 +9,7 @@ module Admin
     before_save :cache_permissions
 
     def self.ransackable_attributes(auth_object = nil)
-      %w[id id_value is_admin name permission_names]
+      ['id', 'id_value', 'is_admin', 'name', 'permission_names']
     end
 
     private

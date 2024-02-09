@@ -6,7 +6,7 @@ module Admin
 
 
     def self.ransackable_attributes(auth_object = nil)
-      %w[id id_value role_id user_id]
+      ['id', 'id_value', 'role_id', 'user_id']
     end
   end
 end
