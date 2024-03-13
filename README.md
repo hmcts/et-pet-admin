@@ -7,7 +7,7 @@ Admin Application for Employment Tribunals System
 ## Introduction
 
 Both ET1 and ET3 applications will send data to this app where the data gets transformed
-and distributed to regional offices using ATOS.
+and distributed to regional offices using CCD
 
 The data is also stored in a database in the [et_api](https://github.com/ministryofjustice/et_api) project and this
 administration app, whilst being a separate code base for scalability reasons, will share the same postgres database
@@ -101,21 +101,6 @@ setup your own database etc.. Just go about things in the normal way, but rememb
 
 
 ### Important Environment Variables
-
-#### ATOS_API_URL
-
-The admin provides a basic ATOS API client to read the zip files that have been
-exported and be able to download them without requiring active_storage.
-If this app moves to Rails 5.2 then this may well move to using the active_storage stuff
-
-This environment variable points to the base URL for the API
-
-e.g.
-```
-
-ATOS_API_URL=http://localhost:3101/atos_api
-
-```
 
 #### DB_HOST
 

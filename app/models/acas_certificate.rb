@@ -11,7 +11,6 @@ class AcasCertificate
 
   def self.find(id, current_admin_user:)
     return nil_instance if id.nil?
-    base_url = ENV.fetch('ACAS_API_URL')
     response = HTTParty.get("#{base_url}/certificates/#{id}", format: :json, headers: { 'EtUserId': current_admin_user.email, 'Accept' => 'application/json', 'Content-Type' => 'application/json' })
     return nil_instance if response.code == 404
     return nil_instance if response.code == 422
@@ -24,7 +23,7 @@ class AcasCertificate
   end
 
   def base_url
-    ENV.fetch('ATOS_API_URL')
+    ENV.fetch('ACAS_API_URL')
   end
 
   def nil_instance?
