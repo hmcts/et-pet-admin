@@ -88,8 +88,6 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
-  config.et_atos_api.username = 'atos'
-  config.et_atos_api.password = 'password'
   config.hosts.clear
 
   config.azure_insights.enable = false
