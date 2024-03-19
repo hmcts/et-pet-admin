@@ -41,5 +41,6 @@ ActiveAdmin.register Export, as: 'Exports' do
       end
     end
 
+    active_admin_comments
   end
 end
