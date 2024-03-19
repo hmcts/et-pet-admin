@@ -34,4 +34,8 @@ class Export < ApplicationRecord
                      events.last
                    end
   end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["events", "external_system", "resource"]
+  end
 end
