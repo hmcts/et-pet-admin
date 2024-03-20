@@ -21,7 +21,7 @@ class ExportPolicy < ApplicationPolicy
     user.is_admin? || user.permission_names.include?('update_exports')
   end
 
-  def destroy
+  def destroy?
     user.is_admin? || user.permission_names.include?('delete_exports')
   end
 end
