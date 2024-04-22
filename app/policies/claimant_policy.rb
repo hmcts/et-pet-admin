@@ -17,7 +17,7 @@ class ClaimantPolicy < ApplicationPolicy
     user.is_admin? || user.permission_names.include?('update_claimants')
   end
 
-  def destroy
+  def destroy?
     user.is_admin? || user.permission_names.include?('delete_claimants')
   end
 end
