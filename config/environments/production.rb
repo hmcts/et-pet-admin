@@ -1,4 +1,4 @@
-require 'active_support/core_ext/integer/time'
+require "active_support/core_ext/integer/time"
 begin
   require 'uglifier'
 rescue LoadError
@@ -30,7 +30,7 @@ Rails.application.configure do
   # config.assets.js_compressor = Uglifier.new(harmony: true) if Object.const_defined?(:Uglifier)
   # config.assets.css_compressor = :sass
 
-  # Do not fallback to assets pipeline if a precompiled asset is missed.
+  # Do not fall back to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
   config.assets.export_concurrent = false
   config.asset_host = ENV['ASSET_HOST'] if ENV['ASSET_HOST'].present?
@@ -55,7 +55,6 @@ Rails.application.configure do
   # config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
   config.force_ssl = ENV.fetch('SECURE_SESSION_COOKIE', 'true').downcase == 'true'
   config.ssl_options = { redirect: false }
 
@@ -67,7 +66,7 @@ Rails.application.configure do
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
 
-  # Info include generic and useful information about system operation, but avoids logging too much
+  # "info" includes generic and useful information about system operation, but avoids logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII). If you
   # want to log everything, set the level to "debug".
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "debug")
@@ -108,6 +107,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Only use :id for inspections in production.
+  config.active_record.attributes_for_inspect = [ :id ]
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
