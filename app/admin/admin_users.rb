@@ -96,7 +96,7 @@ ActiveAdmin.register Admin::User, as: 'User' do
       f.input :password
       f.input :password_confirmation
       if authorized?(:index, Admin::Role)
-        f.input :role_ids, as: :selected_list, label: 'Roles'
+        f.input :role_ids, as: :select, label: 'Roles', collection: Admin::Role.all.pluck(:name, :id), multiple: true
       end
     end
     f.actions
