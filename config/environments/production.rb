@@ -69,7 +69,7 @@ Rails.application.configure do
   # "info" includes generic and useful information about system operation, but avoids logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII). If you
   # want to log everything, set the level to "debug".
-  config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "debug")
+  config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -83,6 +83,9 @@ Rails.application.configure do
     'Pragma' => 'no-cache',
     'Expires' => 'Fri, 01 Jan 1990 00:00:00 GMT'
   }
+
+  # Disable caching for Action Mailer templates even if Action Controller
+  # caching is enabled.
   config.action_mailer.perform_caching = false
 
   config.action_mailer.smtp_settings = {
