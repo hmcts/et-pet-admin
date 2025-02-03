@@ -18,6 +18,12 @@ ActiveAdmin.register Admin::User, as: 'User' do
     end
   end
 
+  batch_action :destroy, confirm: 'Are you sure you want to delete these users ?' do |ids|
+    Admin::User.where(id: ids).destroy_all
+
+    redirect_to collection_path, alert: "#{ids.count} users deleted"
+  end
+
   collection_action :do_import, method: :post do
     authorize!(:import, active_admin_config.resource_class)
     _params = params.respond_to?(:to_unsafe_h) ? params.to_unsafe_h : params

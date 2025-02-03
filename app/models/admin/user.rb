@@ -13,7 +13,7 @@ module Admin
     devise :database_authenticatable,
            :recoverable, :rememberable, :trackable, :validatable, :lockable, :timeoutable
 
-    has_many :user_roles, class_name: 'Admin::UserRole'
+    has_many :user_roles, class_name: 'Admin::UserRole', dependent: :destroy
     has_many :roles, class_name: 'Admin::Role', through: :user_roles
     has_many :permissions, class_name: 'Admin::Permission', through: :roles
 
