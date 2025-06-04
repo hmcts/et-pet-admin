@@ -17,10 +17,10 @@ permissions.each do |p|
   Admin::Permission.find_or_create_by! name: p
 end
 
-admin_role = Admin::Role.find_by(name: 'Admin')
-super_user_role = Admin::Role.find_by!(name: 'Super User')
-developer_role = Admin::Role.find_by!(name: 'Developer')
-user_role = Admin::Role.find_by!(name: 'User')
+admin_role = Admin::Role.find_or_create_by!(name: 'Admin')
+super_user_role = Admin::Role.find_or_create_by!(name: 'Super User')
+developer_role = Admin::Role.find_or_create_by!(name: 'Developer')
+user_role = Admin::Role.find_or_create_by!(name: 'User')
 
 
 if Rails.env.development? || ENV.fetch('SEED_EXAMPLE_USERS', 'false') == 'true'
