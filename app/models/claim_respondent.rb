@@ -2,5 +2,5 @@
 class ClaimRespondent < ApplicationRecord
   self.table_name = :claim_respondents
   belongs_to :claim
-  belongs_to :respondent
+  belongs_to :respondent, dependent: :destroy
 end

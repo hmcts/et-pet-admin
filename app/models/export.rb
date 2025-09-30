@@ -3,7 +3,7 @@ class Export < ApplicationRecord
   self.table_name = :exports
   belongs_to :resource, polymorphic: true
   belongs_to :external_system
-  has_many :events, class_name: 'ExportEvent'
+  has_many :events, class_name: 'ExportEvent', dependent: :destroy
 
   scope :ccd, -> { joins(:external_system).where('external_systems.reference LIKE \'ccd_%\'') }
 
