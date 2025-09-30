@@ -1,20 +1,20 @@
 class Claim < ApplicationRecord
   self.table_name = :claims
-  has_many :claim_claimants
-  has_many :claim_respondents
-  has_many :claim_representatives
-  has_many :claim_uploaded_files
+  has_many :claim_claimants, dependent: :destroy
+  has_many :claim_respondents, dependent: :destroy
+  has_many :claim_representatives, dependent: :destroy
+  has_many :claim_uploaded_files, dependent: :destroy
   has_many :secondary_claimants, through: :claim_claimants, class_name: 'Claimant', source: :claimant
   has_many :secondary_respondents, through: :claim_respondents, class_name: 'Respondent', source: :respondent
   has_many :secondary_representatives, through: :claim_representatives, class_name: 'Representative', source: :representative
   has_many :uploaded_files, through: :claim_uploaded_files
-  has_many :events, as: :attached_to
-  has_many :commands, as: :root_object
-  belongs_to :primary_claimant, class_name: 'Claimant'
-  belongs_to :primary_respondent, class_name: 'Respondent', optional: true
-  belongs_to :primary_representative, class_name: 'Representative', optional: true
+  has_many :events, as: :attached_to, dependent: :destroy
+  has_many :commands, as: :root_object, dependent: :destroy
+  belongs_to :primary_claimant, class_name: 'Claimant', dependent: :destroy
+  belongs_to :primary_respondent, class_name: 'Respondent', optional: true, dependent: :destroy
+  belongs_to :primary_representative, class_name: 'Representative', optional: true, dependent: :destroy
   belongs_to :office, foreign_key: :office_code, primary_key: :code
-  has_many :exports, -> { order(id: :desc) }, as: :resource
+  has_many :exports, -> { order(id: :desc) }, as: :resource, dependent: :destroy
   has_one :ccd_export, -> { ccd }, as: :resource, class_name: 'Export'
 
   scope :not_exported, -> { joins("LEFT JOIN \"exports\" ON \"exports\".\"resource_id\" = \"claims\".\"id\" AND \"exports\".\"resource_type\" = 'Claim'").where(exports: {id: nil}) }
