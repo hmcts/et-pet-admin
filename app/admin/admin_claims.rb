@@ -202,6 +202,15 @@ ActiveAdmin.register Claim, as: 'Claims' do
     end
   end
 
+  batch_action :destroy,
+               confirm: 'Are you sure you want to delete these claims (cannot be undone) ?',
+               if: ->(_user) { authorized? :destroy, :claim } do |ids|
+    Claim.where(id: ids).destroy_all
+
+    redirect_to collection_path, alert: "#{ids.count} claims deleted"
+  end
+
+
   action_item :export,
               only: :show,
               if: ->() { authorized? :create, :export } do
