@@ -91,8 +91,8 @@ GEM
       kaminari (>= 1.2.1)
       railties (>= 6.1)
       ransack (>= 4.0)
-    activeadmin_addons (1.10.1)
-      active_material
+    activeadmin_addons (1.10.2)
+      active_material (~> 1.5)
       railties
       redcarpet
       require_all
@@ -178,7 +178,7 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     drb (2.2.3)
-    erb (5.0.2)
+    erb (5.0.3)
     erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
@@ -277,7 +277,7 @@ GEM
     multipart-post (2.3.0)
     net-http-persistent (4.0.2)
       connection_pool (~> 2.2)
-    net-imap (0.5.10)
+    net-imap (0.5.12)
       date
       net-protocol
     net-pop (0.1.2)
@@ -292,7 +292,7 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.5.4)
-    pp (0.6.2)
+    pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
     psych (5.2.6)
@@ -353,7 +353,7 @@ GEM
     rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
-    redcarpet (3.6.0)
+    redcarpet (3.6.1)
     redis (4.8.1)
     reline (0.6.2)
       io-console (~> 0.5)
@@ -421,8 +421,9 @@ GEM
     spring-watcher-listen (2.1.0)
       listen (>= 2.7, < 4.0)
       spring (>= 4)
-    sprockets (4.2.1)
+    sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
+      logger
       rack (>= 2.2.4, < 4)
     sprockets-rails (3.4.2)
       actionpack (>= 5.2)
