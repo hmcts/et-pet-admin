@@ -1,1 +1,1 @@
-web: bundle exec iodine -port 8080
+web: bundle exec puma --port 8080

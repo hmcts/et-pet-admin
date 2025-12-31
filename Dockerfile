@@ -61,4 +61,4 @@ USER app
 ENV HOME /home/app
 WORKDIR /home/app/admin
 ENV RAILS_ENV=production
-CMD ["bundle", "exec", "iodine", "-port", "8080"]
+CMD ["./run.sh"]
