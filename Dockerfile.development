@@ -38,4 +38,4 @@ RUN cd /home/app/admin && \
 ENV HOME /home/app
 WORKDIR /home/app/admin
 ENV RAILS_ENV=development
-CMD ["bundle", "exec", "iodine", "-port", "8080"]
+CMD ["bundle", "exec", "puma", "--port", "8080"]
