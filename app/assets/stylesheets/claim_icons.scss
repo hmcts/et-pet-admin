@@ -5,6 +5,7 @@
   background-size: 1.5em;
   background-repeat: no-repeat;
   padding: 0.1em;
+  background-image: image-url("claim-file-icon-generic.svg");
   &.csv {
     background-image: image-url("claim-file-icon-csv.png");
   }
@@ -28,5 +29,8 @@
   }
   &.ppt, &.pptx {
     background-image: image-url("claim-file-icon-powerpoint.svg");
+  }
+  &.txt {
+    background-image: image-url("claim-file-icon-txt.svg");
   }
 }
