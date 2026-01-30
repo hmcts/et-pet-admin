@@ -43,7 +43,7 @@ ActiveAdmin.register Claim, as: 'Claims' do
     column :case_type
     column :claimant_count
     column :files do |c|
-      c.uploaded_files.select {|u| u.filename =~ /\.pdf|\.csv|\.rtf/}.map do |f|
+      c.uploaded_files.select {|u| u.filename =~ /\.pdf|\.csv|\.rtf/ || u.tags&.include?('claim-details') || u.tags&.include('multiple-claimants')}.map do |f|
         if f.file.attached?
           link_to("<span class='claim-file-icon #{f.filename.split('.').last}'></span>".html_safe, rails_storage_proxy_path(f.file, disposition: 'attachment'))
         else

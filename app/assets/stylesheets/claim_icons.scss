@@ -5,6 +5,7 @@
   background-size: 1.5em;
   background-repeat: no-repeat;
   padding: 0.1em;
+  background-image: image-url("claim-file-icon-generic.svg");
   &.csv {
     background-image: image-url("claim-file-icon-csv.png");
   }
@@ -16,5 +17,20 @@
   }
   &.problem {
     background-image: image-url("claim-file-icon-problem.png");
+  }
+  &.doc, &.docx {
+    background-image: image-url("claim-file-icon-word.svg");
+  }
+  &.jpg,&.jpeg,&.png,&.gif,&.bmp,&.tiff {
+    background-image: image-url("claim-file-icon-image.svg");
+  }
+  &.xls,&.xlsx {
+      background-image: image-url("claim-file-icon-excel.svg");
+  }
+  &.ppt, &.pptx {
+    background-image: image-url("claim-file-icon-powerpoint.svg");
+  }
+  &.txt {
+    background-image: image-url("claim-file-icon-txt.svg");
   }
 }
