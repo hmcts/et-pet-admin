@@ -82,7 +82,7 @@ gem 'activeadmin_addons', '~> 1.4'
 gem 'active_admin_import', '~> 5.0'
 gem 'pundit', '~> 2.0'
 gem 'httparty', '~> 0.17'
-gem 'dotenv-rails', '~> 2.7'
+gem 'dotenv-rails', '~> 3.0'
 
 
 gem 'et_azure_insights', '0.3.2', git: 'https://github.com/hmcts/et-azure-insights.git', tag: 'v0.3.2'
