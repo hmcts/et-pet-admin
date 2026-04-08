@@ -17,7 +17,12 @@ Rails.application.configure do
 
   # Cache assets for far-future expiry since they are all digest stamped.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
-  config.public_file_server.headers = { "cache-control" => "public, max-age=#{1.year.to_i}" }
+  config.public_file_server.headers = {
+    "cache-control" => "public, max-age=#{1.year.to_i}",
+    "x-frame-options" => "SAMEORIGIN",
+    "x-content-type-options" => "nosniff",
+    "content-security-policy" => "default-src 'self'; frame-ancestors 'self'; object-src 'none'; base-uri 'self'"
+  }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   config.assets.compile = false
@@ -57,7 +62,9 @@ Rails.application.configure do
   config.action_dispatch.default_headers = {
     'Cache-Control' => 'no-store, no-cache, max-age=0, must-revalidate, post-check=0, pre-check=0',
     'Pragma' => 'no-cache',
-    'Expires' => 'Fri, 01 Jan 1990 00:00:00 GMT'
+    'Expires' => 'Fri, 01 Jan 1990 00:00:00 GMT',
+    'X-Frame-Options' => 'SAMEORIGIN',
+    'X-Content-Type-Options' => 'nosniff'
   }
 
   # Disable caching for Action Mailer templates even if Action Controller
