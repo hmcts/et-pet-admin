@@ -173,10 +173,10 @@ GEM
     docker-api (2.2.0)
       excon (>= 0.47.0)
       multi_json
-    dotenv (2.8.1)
-    dotenv-rails (2.8.1)
-      dotenv (= 2.8.1)
-      railties (>= 3.2)
+    dotenv (3.2.0)
+    dotenv-rails (3.2.0)
+      dotenv (= 3.2.0)
+      railties (>= 6.1)
     drb (2.2.3)
     erb (6.0.2)
     erubi (1.13.1)
@@ -482,7 +482,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 5.0)
   devise (~> 5.0)
-  dotenv-rails (~> 2.7)
+  dotenv-rails (~> 3.0)
   et_azure_insights (= 0.3.2)!
   et_full_system_control!
   httparty (~> 0.17)
