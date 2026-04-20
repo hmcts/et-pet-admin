@@ -22,6 +22,7 @@ ActiveAdmin.register UploadedFile, as: 'UploadedFiles' do
       row :import_file_url
       row :import_from_key
       row :file_scope
+      row :tags
       row :created_at
       row :updated_at
     end
@@ -32,6 +33,7 @@ ActiveAdmin.register UploadedFile, as: 'UploadedFiles' do
     id_column
     column :filename
     column :file_scope
+    column :tags
     column :created_at
     column :content_type
   end
@@ -41,6 +43,7 @@ ActiveAdmin.register UploadedFile, as: 'UploadedFiles' do
       f.input :filename
       f.input :import_file_url
       f.input :import_from_key
+      f.input :tags
       f.input :file_scope
       f.input :file, as: :file
     end
