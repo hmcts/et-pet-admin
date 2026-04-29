@@ -81,7 +81,7 @@ rails s
 
 which will run the web server.  The url is
 
-http://admin.et.127.0.0.1.nip.io:3100
+http://admin.localhost:3100
 
 
 ### Developing And Testing Without Et Full System Gem
@@ -166,4 +166,3 @@ Any of the environment variables below can be added if you want to customize fro
 
 MAINTENANCE_ALLOWED_IPS
 MAINTENANCE_END - If added you will see "You will be able to use the service from " followed by this text
-
