@@ -32,7 +32,7 @@ gem 'jbuilder', '~> 2.10'
 # gem 'capistrano-rails', group: :development
 
 gem 'sidekiq', '< 7'
-gem 'sidekiq-cron', '~> 1.1'
+gem 'sidekiq-cron', '~> 2.0'
 gem 'sidekiq-failures', '~> 1.0'
 gem "sentry-ruby", "~> 5.9"
 gem "sentry-rails", "~> 5.9"
