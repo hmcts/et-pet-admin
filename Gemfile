@@ -14,7 +14,7 @@ gem 'rails', '8.0.4.1'
 gem 'azure_env_secrets', git: 'https://github.com/hmcts/azure_env_secrets.git', tag: 'v1.0.1'
 # Use postgres as the database for Active Record
 gem 'pg', '~> 1.0'
-gem 'puma', '~> 6.3'
+gem 'puma', '~> 7.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'sprockets', '~> 4.0'
