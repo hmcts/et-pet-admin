@@ -9,12 +9,12 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '8.0.4.1'
+gem 'rails', '8.1.3.1'
 # Azure deployment so we need this
 gem 'azure_env_secrets', git: 'https://github.com/hmcts/azure_env_secrets.git', tag: 'v1.0.1'
 # Use postgres as the database for Active Record
 gem 'pg', '~> 1.0'
-gem 'puma', '~> 6.3'
+gem 'puma', '~> 7.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'sprockets', '~> 4.0'
@@ -32,14 +32,14 @@ gem 'jbuilder', '~> 2.10'
 # gem 'capistrano-rails', group: :development
 
 gem 'sidekiq', '< 7'
-gem 'sidekiq-cron', '~> 1.1'
+gem 'sidekiq-cron', '~> 2.4'
 gem 'sidekiq-failures', '~> 1.0'
 gem "sentry-ruby", "~> 5.9"
 gem "sentry-rails", "~> 5.9"
 gem "sentry-sidekiq", "~> 5.9"
 
 # Azure gem for active storage
-gem 'azure-storage-blob', '~> 2.0', '>= 2.0.1'
+gem 'azure-blob', '~> 0.8'
 
 # Use uk_postcode to validate postcodes for manual generation
 gem 'uk_postcode', '~> 2.1'
@@ -48,7 +48,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'bundler-audit', '~> 0.9.1'
-  gem 'et_full_system_control', git: 'https://github.com/hmcts/et-full-system-control.git', branch: 'main'
 end
 
 group :test do
