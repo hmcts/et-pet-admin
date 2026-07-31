@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   authenticate :admin_user, -> (u) { u.is_admin? || u.permission_names.include?('read_jobs') } do |u|
     mount Sidekiq::Web => '/admin/sidekiq'
-    mount MissionControl::Jobs::Engine, at: "/admin/solid_queue_jobs"
+    mount MissionControl::Jobs::Engine, at: "/admin/solid_queue_jobs_frame"
   end
   get '/health' => 'status#healthcheck', defaults: { format: 'json' }
   get '/health/readiness' => 'status#healthcheck', defaults: { format: 'json' }
