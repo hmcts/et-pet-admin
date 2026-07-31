@@ -9,7 +9,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '8.0.5.1'
+gem 'rails', '8.1.3.1'
 # Azure deployment so we need this
 gem 'azure_env_secrets', git: 'https://github.com/hmcts/azure_env_secrets.git', tag: 'v1.0.1'
 # Use postgres as the database for Active Record
@@ -39,7 +39,7 @@ gem "sentry-rails", "~> 5.9"
 gem "sentry-sidekiq", "~> 5.9"
 
 # Azure gem for active storage
-gem 'azure-storage-blob', '~> 2.0', '>= 2.0.1'
+gem 'azure-blob', '~> 0.8'
 
 # Use uk_postcode to validate postcodes for manual generation
 gem 'uk_postcode', '~> 2.1'
