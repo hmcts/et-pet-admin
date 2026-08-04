@@ -12,6 +12,7 @@
 @import "active_admin/mixins";
 @import "active_admin/base";
 @import "sidekiq_active_admin";
+@import "solid_queue_active_admin";
 @import "et_offices_active_admin";
 @import "et_acas_active_admin";
 @import "generate_fgr_admin";
