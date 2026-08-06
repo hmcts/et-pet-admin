@@ -37,7 +37,7 @@ gem 'sidekiq-failures', '~> 1.0'
 gem "sentry-ruby", "~> 5.9"
 gem "sentry-rails", "~> 5.9"
 gem "sentry-sidekiq", "~> 5.9"
-gem 'solid_queue', '~> 1.4.0'
+gem 'good_job', '~> 4.19.0'
 
 
 # Azure gem for active storage
@@ -93,5 +93,3 @@ gem 'application_insights', git: 'https://github.com/microsoft/ApplicationInsigh
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "rack-attack", "~> 6.7"
-
-gem "mission_control-jobs", "~> 1.1"
