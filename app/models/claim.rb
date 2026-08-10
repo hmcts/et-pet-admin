@@ -15,7 +15,7 @@ class Claim < ApplicationRecord
   belongs_to :primary_representative, class_name: 'Representative', optional: true, dependent: :destroy
   belongs_to :office, foreign_key: :office_code, primary_key: :code
   has_many :exports, -> { order(id: :desc) }, as: :resource, dependent: :destroy
-  has_one :ccd_export, -> { ccd }, as: :resource, class_name: 'Export'
+  has_one :ccd_export, -> { ccd.order(id: :desc) }, as: :resource, class_name: 'Export'
 
   scope :not_exported, -> { joins("LEFT JOIN \"exports\" ON \"exports\".\"resource_id\" = \"claims\".\"id\" AND \"exports\".\"resource_type\" = 'Claim'").where(exports: {id: nil}) }
   scope :not_exported_to_ecm, -> do
