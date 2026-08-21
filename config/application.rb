@@ -40,9 +40,7 @@ module Super
     default_redis_url = "redis://#{config.redis_host}:#{config.redis_port}"
     config.redis_url = ENV.fetch('REDIS_URL', default_redis_url) + "/#{config.redis_database}"
 
-    config.active_job.queue_adapter = :solid_queue
-    config.solid_queue.connects_to = { database: { writing: :queue } }
-    config.mission_control.jobs.http_basic_auth_enabled = false
+    config.active_job.queue_adapter = :good_job
 
     insights_key = ENV.fetch('AZURE_APP_INSIGHTS_KEY', false)
     if insights_key
