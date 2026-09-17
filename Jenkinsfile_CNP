@@ -40,6 +40,8 @@ withPipeline(type, product, component) {
     env.DB_HOST = 'localhost'
     env.DB_USER = 'postgres'
     env.DB_PORT = '5421'
+    env.ET1_DB_PORT = '5421'
+    env.ET3_DB_PORT = '5421'
     env.DB_PASSWORD = 'postgres'
     env.NODE_OPTIONS='--openssl-legacy-provider'
     env.ENABLE_COVERAGE='true'
