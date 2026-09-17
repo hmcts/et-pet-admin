@@ -93,7 +93,6 @@ test:
     password: '<%= ENV.fetch('ET1_DB_PASSWORD', 'postgres') %>'
     port: '<%= ENV.fetch('ET1_DB_PORT', '5432').to_i %>'
     database: '<%= ENV.fetch('ET1_DB_NAME', 'admin_atet_test') %>'
-    database_tasks: false
   et3:
     <<: *default
     host: '<%= ENV.fetch('ET3_DB_HOST', 'localhost') %>'
@@ -101,7 +100,6 @@ test:
     password: '<%= ENV.fetch('ET3_DB_PASSWORD', 'postgres') %>'
     port: '<%= ENV.fetch('ET3_DB_PORT', '5432').to_i %>'
     database: '<%= ENV.fetch('ET3_DB_NAME', 'admin_et3_test') %>'
-    database_tasks: false
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
