@@ -1,0 +1,15 @@
+{
+  "chart": "charts/et-pet-admin",
+  "image": "et-full-system-servers-admin:latest",
+  "imageValues": [
+    "base.image"
+  ],
+  "release": "et-local-admin",
+  "workload": "admin",
+  "hostPrefix": "admin",
+  "domain": "k8s.orb.local",
+  "ingressValues": [
+    "base"
+  ],
+  "waitForRollout": true
+}

@@ -1,0 +1,82 @@
+# Local admin uses the existing chart and Compose startup script.
+global:
+  environment: local
+  enableKeyVaults: false
+base:
+  releaseNameOverride: admin
+  image: et-full-system-servers-admin:latest
+  imagePullPolicy: Never
+  replicas: 1
+  command: ["./bin/run_full_system"]
+  args: []
+  applicationPort: 8080
+  ingressHost: admin.k8s.orb.local
+  ingressClass: et-local
+  disableTraefikTls: false
+  ingressAnnotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  aadIdentityName: ""
+  useWorkloadIdentity: false
+  saEnabled: false
+  disableKeyVaults: true
+  affinity:
+    podAntiAffinity: {}
+  startupPath: /health
+  readinessPath: /health
+  livenessPath: ""
+  autoscaling:
+    enabled: false
+  pdb:
+    enabled: false
+  terminationGracePeriodSeconds: 30
+  environment:
+    RAILS_ENV: production
+    RACK_ENV: production
+    RAILS_LOG_TO_STDOUT: "true"
+    RAILS_LOG_LEVEL: info
+    RAILS_SERVE_STATIC_FILES: "true"
+    RAILS_MAX_THREADS: "5"
+    WEB_CONCURRENCY: "0"
+    PORT: "8080"
+    DOCKER_STATE: ""
+    SEED_EXAMPLE_USERS: "true"
+    SECRET_KEY_BASE: local-kubernetes-only-not-a-real-secret-0123456789abcdef0123456789abcdef
+    DEVISE_SECRET_KEY: local-kubernetes-only-not-a-real-secret-0123456789abcdef0123456789abcdef
+    DB_HOST: postgres.et-full-system-infra.svc.cluster.local
+    DB_PORT: "5432"
+    DB_NAME: et_api_production
+    QUEUE_DB_NAME: et_api_queue_production
+    DB_USERNAME: postgres
+    DB_PASSWORD: local-only
+    DB_SSL_MODE: disable
+    ET1_DB_HOST: postgres.et-full-system-infra.svc.cluster.local
+    ET1_DB_PORT: "5432"
+    ET1_DB_NAME: etdb
+    ET1_DB_USERNAME: postgres
+    ET1_DB_PASSWORD: local-only
+    ET3_DB_HOST: postgres.et-full-system-infra.svc.cluster.local
+    ET3_DB_PORT: "5432"
+    ET3_DB_NAME: et3_production
+    ET3_DB_USERNAME: postgres
+    ET3_DB_PASSWORD: local-only
+    ET_API_URL: http://api.et-full-system.svc.cluster.local/api
+    ACAS_API_URL: http://api.et-full-system.svc.cluster.local/et_acas_api
+    ACAS_SERVICE_URL: http://fake-services.et-full-system-infra.svc.cluster.local:9000
+    CCD_UI_BASE_URL: https://et-ccd.k8s.orb.local/ui/cases/case-details/EMPLOYMENT
+    AZURE_STORAGE_ACCOUNT: devstoreaccount1
+    AZURE_STORAGE_ACCESS_KEY: Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==
+    AZURE_STORAGE_CONTAINER: et-api-test-container
+    AZURE_STORAGE_DIRECT_UPLOAD_ACCOUNT: devstoreaccount1
+    AZURE_STORAGE_DIRECT_UPLOAD_ACCESS_KEY: Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==
+    AZURE_STORAGE_DIRECT_UPLOAD_CONTAINER: et-api-direct-test-container
+    AZURE_STORAGE_BLOB_HOST: http://azurite.et-full-system-infra.svc.cluster.local:10000
+    AZURE_STORAGE_BLOB_FORCE_PATH_STYLE: "true"
+    SMTP_HOSTNAME: mailhog.et-full-system-infra.svc.cluster.local
+    SMTP_PORT: "1025"
+    SMTP_USERNAME: doesntmatter
+    SMTP_PASSWORD: doesntmatter
+    SECURE_SESSION_COOKIE: "true"
+    SERVICE_FQDN: https://admin.k8s.orb.local
+    SECRETS_PATH: ""
+    CLOUD_PROVIDER: null
+    DISABLE_AZURE_APP_INSIGHTS: "true"
