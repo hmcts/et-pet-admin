@@ -33,8 +33,6 @@ base:
   keyVaults:
     et-pet:
       secrets:
-        - name: et-pet-api-redis-url
-          alias: REDIS_URL
         - name: api-azure-storage-access-key
           alias: AZURE_STORAGE_ACCESS_KEY
         - name: api-azure-storage-direct-upload-access-key
