@@ -169,14 +169,14 @@ GEM
     et-orbi (1.4.1)
       tzinfo
     execjs (2.9.1)
-    ffi (1.17.2-aarch64-linux-gnu)
-    ffi (1.17.2-aarch64-linux-musl)
-    ffi (1.17.2-arm-linux-gnu)
-    ffi (1.17.2-arm-linux-musl)
-    ffi (1.17.2-arm64-darwin)
-    ffi (1.17.2-x86_64-darwin)
-    ffi (1.17.2-x86_64-linux-gnu)
-    ffi (1.17.2-x86_64-linux-musl)
+    ffi (1.17.4-aarch64-linux-gnu)
+    ffi (1.17.4-aarch64-linux-musl)
+    ffi (1.17.4-arm-linux-gnu)
+    ffi (1.17.4-arm-linux-musl)
+    ffi (1.17.4-arm64-darwin)
+    ffi (1.17.4-x86_64-darwin)
+    ffi (1.17.4-x86_64-linux-gnu)
+    ffi (1.17.4-x86_64-linux-musl)
     formtastic (6.0.0)
       actionpack (>= 7.2.0)
     formtastic_i18n (0.7.0)
@@ -279,6 +279,7 @@ GEM
     nokogiri (1.19.4-x86_64-linux-musl)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    ostruct (0.6.3)
     pg (1.5.4)
     pp (0.6.4)
       prettyprint
@@ -468,6 +469,7 @@ DEPENDENCIES
   httparty (~> 0.17)
   jbuilder (~> 2.10)
   listen (~> 3.5)
+  ostruct
   pg (~> 1.0)
   puma (~> 7.2)
   pundit (~> 2.0)
@@ -490,7 +492,7 @@ DEPENDENCIES
   web-console (~> 4.1)
 
 RUBY VERSION
-   ruby 3.3.5p100
+   ruby 4.0.7p0
 
 BUNDLED WITH
    2.7.2
