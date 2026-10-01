@@ -80,10 +80,6 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
 
-  config.redis_database = ENV.fetch('REDIS_DATABASE', '1')
-  default_redis_url = "redis://#{config.redis_host}:#{config.redis_port}/#{config.redis_database}"
-  config.redis_url = ENV.fetch('REDIS_URL', default_redis_url)
-
   config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'debug').to_sym
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new($stdout)

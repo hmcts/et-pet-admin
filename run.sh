@@ -11,6 +11,10 @@ create)
     bundle exec rake db:migrate
     bundle exec rake db:seed
     ;;
+seed)
+    echo "Running seed"
+    bundle exec rake db:seed
+    ;;
 esac
 
 bundle exec puma --port ${PORT:-8080}

@@ -10,8 +10,7 @@ Both ET1 and ET3 applications will send data to this app where the data gets tra
 and distributed to regional offices using CCD
 
 The data is also stored in a database in the [et_api](https://github.com/ministryofjustice/et_api) project and this
-administration app, whilst being a separate code base for scalability reasons, will share the same postgres database
-and redis database.
+administration app, whilst being a separate code base for scalability reasons, will share the same postgres database.
 
 
 ## Using The Admin
@@ -35,16 +34,16 @@ password: password
 
 These details are setup in the seed data
 
-### Sidekiq WEB UI
+### Good Jobs WEB UI
 
-The sidekiq WEB UI is integrated into the admin - click on the 'Jobs' tab and as long as you have permissions (admin@example does) then
+The Good jobs WEB UI is integrated into the admin - click on the 'Jobs' tab and as long as you have permissions (admin@example does) then
 you will see it inside an iframe that should auto size as the content does.
 
 
 ## Developing And Testing
 
 As this application shares the database with the API, you will first need to run the API in a separate process and take note of the database
-host, port etc.. along with the redis host, port etc...  OR a much easier method is to run within the et_full_system (see below)  - or if you want to host your own admin, just setup the environment variables to point to the same database.  
+host, port etc..  OR a much easier method is to run within the et_full_system (see below)  - or if you want to host your own admin, just setup the environment variables to point to the same database.  
 
 See 'Important Environment Variables' below for a list of all the environment variables that you can change (irrespective of if you use docker or not)
 
@@ -55,7 +54,7 @@ Once you have an environment running, read on below ...
 
 #### Developing Locally In Full System
 
-The easiest way to develop is to use the full system to provide everything that you need (database, redis, API etc..)
+The easiest way to develop is to use the full system to provide everything that you need (database, API etc..)
 and use a special command to redirect the full system admin URL to your local machine.
 The command to redirect to your local machine on port 3000 is (note you can use any free port) :-
 
@@ -129,29 +128,6 @@ Provides access to the generic ET API service, which has an endpoint currently u
 #### PORT
 
 The port on which the web server will run - defaults to 3000
-
-#### REDIS_HOST
-
-Sets the redis host where the redis database is running (defaults to localhost)
-
-#### REDIS_PORT
-
-Sets the redis port where the redis database server is listening (defaults to 6379)
-
-#### REDIS_DATABASE
-
-Sets the redis database number (defaults to 1)
-
-#### REDIS_URL
-
-Rather than specifying the above 3, you can use the traditional REDIS_URL environment variable (defaults to the correct URL when using the above 3 environment variables)
-
-
-If your redis server needs a password, it must be specified using
-
-```
-REDIS_PASSWORD=<your password>
-```
 
 ## Shuttering
 

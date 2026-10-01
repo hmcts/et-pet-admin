@@ -34,12 +34,6 @@ module Super
 
     Rails.application.config.active_storage.resolve_model_to_route = :rails_storage_proxy
 
-    config.redis_host = ENV.fetch('REDIS_HOST', 'localhost')
-    config.redis_port = ENV.fetch('REDIS_PORT', '6379')
-    config.redis_database = ENV.fetch('REDIS_DATABASE', '2')
-    default_redis_url = "redis://#{config.redis_host}:#{config.redis_port}"
-    config.redis_url = ENV.fetch('REDIS_URL', default_redis_url) + "/#{config.redis_database}"
-
     config.active_job.queue_adapter = :good_job
 
     insights_key = ENV.fetch('AZURE_APP_INSIGHTS_KEY', false)
