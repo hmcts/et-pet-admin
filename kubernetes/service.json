@@ -5,7 +5,7 @@
     "base.image"
   ],
   "release": "et-local-admin",
-  "workload": "admin",
+  "workload": "et-local-admin-base",
   "hostPrefix": "admin",
   "domain": "k8s.orb.local",
   "ingressValues": [

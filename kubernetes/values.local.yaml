@@ -3,16 +3,10 @@ global:
   environment: local
   enableKeyVaults: false
 base:
-  releaseNameOverride: admin
   image: et-full-system-servers-admin:latest
   imagePullPolicy: Never
-  replicas: 1
-  command: ["./bin/run_full_system"]
-  args: []
-  applicationPort: 8080
   ingressHost: admin.k8s.orb.local
   ingressClass: et-local
-  disableTraefikTls: false
   ingressAnnotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
   aadIdentityName: ""
@@ -21,24 +15,12 @@ base:
   disableKeyVaults: true
   affinity:
     podAntiAffinity: {}
-  startupPath: /health
-  readinessPath: /health
-  livenessPath: ""
   autoscaling:
     enabled: false
   pdb:
     enabled: false
-  terminationGracePeriodSeconds: 30
   environment:
-    RAILS_ENV: production
-    RACK_ENV: production
-    RAILS_LOG_TO_STDOUT: "true"
-    RAILS_LOG_LEVEL: info
-    RAILS_SERVE_STATIC_FILES: "true"
-    RAILS_MAX_THREADS: "5"
-    WEB_CONCURRENCY: "0"
-    PORT: "8080"
-    DOCKER_STATE: ""
+    DOCKER_STATE: "seed"
     SEED_EXAMPLE_USERS: "true"
     SECRET_KEY_BASE: local-kubernetes-only-not-a-real-secret-0123456789abcdef0123456789abcdef
     DEVISE_SECRET_KEY: local-kubernetes-only-not-a-real-secret-0123456789abcdef0123456789abcdef
@@ -59,8 +41,8 @@ base:
     ET3_DB_NAME: et3_production
     ET3_DB_USERNAME: postgres
     ET3_DB_PASSWORD: local-only
-    ET_API_URL: http://api.et-full-system.svc.cluster.local/api
-    ACAS_API_URL: http://api.et-full-system.svc.cluster.local/et_acas_api
+    ET_API_URL: http://et-local-api-base.et-full-system.svc.cluster.local/api
+    ACAS_API_URL: http://et-local-api-base.et-full-system.svc.cluster.local/et_acas_api
     ACAS_SERVICE_URL: http://fake-services.et-full-system-infra.svc.cluster.local:9000
     CCD_UI_BASE_URL: https://et-ccd.k8s.orb.local/ui/cases/case-details/EMPLOYMENT
     AZURE_STORAGE_ACCOUNT: devstoreaccount1
@@ -75,8 +57,6 @@ base:
     SMTP_PORT: "1025"
     SMTP_USERNAME: doesntmatter
     SMTP_PASSWORD: doesntmatter
-    SECURE_SESSION_COOKIE: "true"
     SERVICE_FQDN: https://admin.k8s.orb.local
     SECRETS_PATH: ""
-    CLOUD_PROVIDER: null
     DISABLE_AZURE_APP_INSIGHTS: "true"
