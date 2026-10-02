@@ -6,5 +6,5 @@ home: https://github.com/hmcts/et-pet-admin
 version: 0.0.21
 dependencies:
   - name: base
-    version: 1.4.0
+    version: 1.4.2
     repository: "oci://hmctsprod.azurecr.io/helm"
