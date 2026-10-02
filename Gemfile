@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '~> 3.3.5'
+ruby '~> 4.0.7'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.10'
 gem "sentry-ruby", "~> 5.9"
 gem "sentry-rails", "~> 5.9"
 gem 'good_job', '~> 4.19.0'
+gem 'ostruct'
 
 
 # Azure gem for active storage
