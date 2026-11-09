@@ -85,8 +85,8 @@ GEM
       kaminari (>= 1.2.1)
       railties (>= 6.1)
       ransack (>= 4.0)
-    activeadmin_addons (1.10.1)
-      active_material
+    activeadmin_addons (1.10.2)
+      active_material (~> 1.5)
       railties
       redcarpet
       require_all
@@ -356,7 +356,7 @@ GEM
       prism (>= 1.6.0)
       rbs (>= 4.0.0)
       tsort
-    redcarpet (3.6.0)
+    redcarpet (3.6.1)
     reline (0.7.0)
       io-console (~> 0.5)
     require_all (3.0.0)
