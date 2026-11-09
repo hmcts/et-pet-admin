@@ -3,7 +3,7 @@ class Representative < ApplicationRecord
   belongs_to :address, dependent: :destroy
   accepts_nested_attributes_for :address
 
-  def self.ransackable_associations(auth_object = nil)
+  def self.ransackable_associations(_auth_object = nil)
    ["address"]
   end
 end
